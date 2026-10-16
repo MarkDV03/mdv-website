@@ -1,0 +1,8 @@
+# Case studies are hidden until the clients say yes.
+# To show them again, delete these two lines (and rebuild with the case studies on).
+/work/*            /404.html  404!
+/assets/img/work/* /404.html  404!
+# Private files that are only for editing, never shown on the site
+/_source/*   /404.html  404!
+/serve.js    /404.html  404!
+/README.md   /404.html  404!
