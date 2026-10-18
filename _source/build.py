@@ -1,10 +1,13 @@
 import html
+import os
 import sys, json
 from partials import *
 
 OUT = sys.argv[1]
 # Set to True once the businesses give permission to show their case studies.
 SHOW_WORK = len(sys.argv) > 2 and sys.argv[2] == 'full'
+# Christina's real site. The Work section shows it live, so it updates whenever her site does.
+CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://markdv03.github.io/Christinas-salon/')
 I = 'assets/img/work/'
 
 import os
@@ -190,10 +193,26 @@ def page_index(root=''):
             </article>
           </div>
 ''' if SHOW_WORK else f'''          <div class="projects projects--soon">
+            <article class="project project--live project--wide reveal">
+              <div class="live-media">
+                <div class="laptop live-laptop">
+                  <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', 'christinas-salon')}<div class="live-frame" data-w="1440" data-h="900"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+                  <div class="laptop__base" aria-hidden="true"></div>
+                </div>
+                <div class="phone live-phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+              </div>
+              <div class="project__body">
+                <p class="project__eyebrow"><span class="live-dot" aria-hidden="true"></span>Live site</p>
+                <h3 class="project__title"><a href="{CHRISTINA_URL}" target="_blank" rel="noopener">Christina&rsquo;s Hair Salon</a></h3>
+                <p class="project__meta">Milpitas, CA &middot; Hair salon</p>
+                <p class="project__text">A warm, easy site where customers can see the services, find the salon and tap to call. This is the real site running live, so you&rsquo;re seeing exactly what her customers see.</p>
+                <span class="project__more" aria-hidden="true">Visit the live site {icon('arrow-right')}</span>
+              </div>
+            </article>
             <article class="project project--next project--wide reveal">
               <div class="project__body">
-                <p class="project__eyebrow hand">New projects coming soon</p>
-                <h3 class="project__title"><a href="#contact">Want yours to be the first one here?</a></h3>
+                <p class="project__eyebrow hand">Your business could be next</p>
+                <h3 class="project__title"><a href="#contact">Want a site like this?</a></h3>
                 <p class="project__meta">Send me your business name and I&rsquo;ll send back a free concept of your new homepage. If you want to keep it, I&rsquo;ll quote the price to own it, with no obligation.</p>
                 <span class="project__more" aria-hidden="true">Get a free concept {icon('arrow-right')}</span>
               </div>
@@ -256,9 +275,9 @@ def page_index(root=''):
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="work-title">{'Recent work' if SHOW_WORK else 'A free concept comes first'}</h2>
+              <h2 class="h2" id="work-title">Recent work</h2>
             </div>
-            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'Before you spend anything, I design what your new homepage could look like. If you don&rsquo;t love it, no hard feelings.'}</p>
+            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'Here&rsquo;s a real site I designed and built, running live. Before you spend anything on yours, I design a free concept first. If you don&rsquo;t love it, no hard feelings.'}</p>
           </div>
 
 {WORK_GRID}        </div>

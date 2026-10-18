@@ -324,3 +324,17 @@ const PROJECT_STATUS = {
   window.addEventListener("resize", update);
   update();
 })();
+
+/* Live project previews: scale each full-size iframe down to fit its device screen */
+(function () {
+  var frames = document.querySelectorAll(".live-frame");
+  if (!frames.length) return;
+  function fit(el) { el.style.setProperty("--s", el.clientWidth / Number(el.dataset.w)); }
+  frames.forEach(fit);
+  if ("ResizeObserver" in window) {
+    var ro = new ResizeObserver(function (entries) { entries.forEach(function (e) { fit(e.target); }); });
+    frames.forEach(function (el) { ro.observe(el); });
+  } else {
+    window.addEventListener("resize", function () { frames.forEach(fit); });
+  }
+})();

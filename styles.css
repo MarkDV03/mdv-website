@@ -2299,3 +2299,25 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .faq__item[open] .faq__icon::after { transform: rotate(0deg); }
 .faq__item p { margin: 0; padding: 0 22px 20px; max-width: 68ch; color: #3C4A63; line-height: 1.6; }
 @media (prefers-reduced-motion: reduce) { .faq__icon::before, .faq__icon::after { transition: none; } }
+
+/* ---------- Live project: Christina's real site shown inside the MacBook and iPhone ---------- */
+.projects--soon { gap: clamp(18px, 2.4vw, 28px); }
+.project--live { background: rgba(255, 255, 255, 0.78); border-color: rgba(15, 36, 73, 0.1); box-shadow: 0 6px 0 rgba(191, 213, 255, 0.9), 0 18px 40px rgba(15, 36, 73, 0.08); }
+.projects--soon .project--live { padding: clamp(18px, 3vw, 36px); gap: clamp(20px, 3vw, 40px); }
+.live-media { position: relative; padding: 0 9% 6% 0; }
+.live-laptop { width: 100%; }
+.live-phone { position: absolute; right: 0; bottom: 0; width: 24%; }
+.live-frame { position: relative; overflow: hidden; width: 100%; aspect-ratio: 1440 / 900; background: #F6F1EA; }
+.live-phone .live-frame { aspect-ratio: 390 / 844; }
+.live-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; transform: scale(var(--s, 0.4)); pointer-events: none; background: #fff; }
+.live-dot { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #2BB673; box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.5); animation: live-pulse 2s infinite; vertical-align: 1px; }
+@keyframes live-pulse { 70% { box-shadow: 0 0 0 8px rgba(43, 182, 115, 0); } 100% { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0); } }
+.project__text { color: #3C4A63; line-height: 1.6; max-width: 46ch; }
+.project--live .project__more { color: #2F5FD0; }
+.project--live:hover { transform: translateY(-3px); }
+@media (min-width: 900px) {
+  .projects--soon .project--live { grid-template-columns: 1.35fr 1fr; padding-right: clamp(24px, 3vw, 40px); }
+  .project--live .project__body { padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } .project--live:hover { transform: none; } }
+.project--live .project__eyebrow { color: #1F8A55; display: inline-flex; align-items: center; }
