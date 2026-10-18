@@ -332,8 +332,8 @@ def page_index(root=''):
           </figure>
           <div class="about__body reveal" style="--d:80ms">
             <h2 class="h2" id="about-title">A bit about me</h2>
-            <p class="lead">I was born and raised in Hayward, and most of my week is still spent at the same kind of local spots I grew up around. A lot of them are great at what they do. Then you look them up and find a website that hasn&rsquo;t been touched in years, or nothing at all, while people a few blocks away are searching for exactly what they offer.</p>
-            <p class="lead">That&rsquo;s why I started MDV Web Design. If you work with me, you&rsquo;re talking to me the whole way, from the first free concept to launch day and any changes after that. No agency in between.</p>
+            <p class="lead">I was born and raised in Hayward. All my life I&rsquo;ve walked into great local businesses whose websites don&rsquo;t do them justice, or who don&rsquo;t have one at all. I started MDV Web Design to put those businesses on the map, so the people who need them can actually find them.</p>
+            <p class="lead">You deal with me directly, from the first concept to launch day and any changes after. No agency, no runaround.</p>
             <ul class="facts" role="list">
               <li>{icon('pin')} Based in Hayward</li>
               <li>{icon('store')} Trades, salons, restaurants, shops</li>
