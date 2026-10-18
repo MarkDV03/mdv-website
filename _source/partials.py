@@ -1,6 +1,9 @@
 # Shared snippets used to generate the static pages once.
 import pathlib
 SCR = pathlib.Path(__file__).resolve().parent
+# Changes whenever styles.css or script.js change, so phones don't keep an old cached copy
+import hashlib
+ASSET_V = hashlib.md5(b''.join((SCR.parent / f).read_bytes() for f in ('styles.css', 'script.js'))).hexdigest()[:8]
 def mark(root, lazy=False, alt=''):
     lz = ' loading="lazy"' if lazy else ''
     return (f'<img class="logo__mark" src="{root}assets/logo-mark-88.webp" srcset="{root}assets/logo-mark-176.webp 2x, {root}assets/logo-mark-264.webp 3x" '
@@ -68,7 +71,7 @@ def head(root, title, desc, path, extra_fonts='', preload=''):
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap"></noscript>{extra_fonts}{preload}
-  <link rel="stylesheet" href="{root}styles.css">
+  <link rel="stylesheet" href="{root}styles.css?v={ASSET_V}">
   <script>document.documentElement.classList.add('js');</script>'''
 
 def header(root, home=True):
@@ -126,7 +129,7 @@ def footer(root):
   </div>'''
 
 def tail(root):
-    return f'''  <script src="{root}script.js" defer></script>
+    return f'''  <script src="{root}script.js?v={ASSET_V}" defer></script>
 </body>
 </html>
 '''

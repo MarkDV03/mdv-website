@@ -354,14 +354,25 @@ const PROJECT_STATUS = {
       css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}";
       doc.head.appendChild(css);
       var speed = iframe.width < 600 ? 170 : 150;   // site pixels per second
+      var viewH = Number(iframe.getAttribute("height")) || win.innerHeight;
+      var root = doc.documentElement, useTransform = false;
+      // iPhone Safari won't scroll inside a frame, so slide the page itself instead
+      function moveTo(v) {
+        if (!useTransform) {
+          win.scrollTo(0, v);
+          if (v > 40 && Math.abs(win.scrollY - v) > 20) { useTransform = true; win.scrollTo(0, 0); root.style.overflow = "hidden"; root.style.willChange = "transform"; }
+          else return;
+        }
+        root.style.transform = "translateY(" + (-v) + "px)";
+      }
       var y = 0, pauseUntil = performance.now() + 1800, last = performance.now();
       function tick(now) {
         var dt = Math.min(now - last, 100); last = now;
         if (visible && now > pauseUntil) {
-          var max = doc.documentElement.scrollHeight - win.innerHeight;
+          var max = (doc.body ? Math.max(doc.body.scrollHeight, root.scrollHeight) : root.scrollHeight) - viewH;
           y += speed * dt / 1000;
-          if (y >= max) { y = max; pauseUntil = now + 2200; win.scrollTo(0, y); setTimeout(function () { y = 0; win.scrollTo(0, 0); }, 2000); }
-          else win.scrollTo(0, y);
+          if (y >= max) { y = max; pauseUntil = now + 2200; moveTo(y); setTimeout(function () { y = 0; moveTo(0); }, 2000); }
+          else moveTo(y);
         }
         requestAnimationFrame(tick);
       }
