@@ -199,7 +199,7 @@ def page_index(root=''):
                   <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', 'christinas-salon')}<div class="live-frame" data-w="1440" data-h="900"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
                   <div class="laptop__base" aria-hidden="true"></div>
                 </div>
-                <div class="phone live-phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
               </div>
               <div class="project__body">
                 <p class="project__eyebrow"><span class="live-dot" aria-hidden="true"></span>Live site</p>
@@ -247,18 +247,6 @@ def page_index(root=''):
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
 
-        <div class="hero__stage">
-          <div class="hero__laptop">
-{carr_lap if SHOW_WORK else mock_desk}
-          </div>
-          <div class="hero__phone">
-{chr_phone if SHOW_WORK else mock_phone}
-          </div>
-          <span class="tag tag--blue" aria-hidden="true">&#10003; Show your services</span>
-          <span class="tag tag--gold" aria-hidden="true">&#9733; Show your reviews</span>
-          <span class="tag tag--navy" aria-hidden="true">Easy to navigate</span>
-          <p class="note note--call" aria-hidden="true">one tap to call you<svg viewBox="0 0 120 70" aria-hidden="true" focusable="false"><path d="M6 10c30 2 64 14 88 44" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M78 52l17 4 2-18" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
-        </div>
         <div class="hero__bay" aria-hidden="true">
           <svg viewBox="0 0 1200 90" preserveAspectRatio="none" focusable="false">
             <path class="hb-hills" d="M0 52 C90 30 170 24 250 38 C330 52 380 30 470 26 C560 22 640 44 720 40 C820 34 900 18 1000 24 C1080 29 1140 40 1200 36"/>

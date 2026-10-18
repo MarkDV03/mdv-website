@@ -338,3 +338,39 @@ const PROJECT_STATUS = {
     window.addEventListener("resize", function () { frames.forEach(fit); });
   }
 })();
+
+/* Live project previews: slowly scroll through the real site, loop, and only while on screen.
+   Works when both sites share an origin (markdv03.github.io); otherwise the top of the site just shows. */
+(function () {
+  var frames = document.querySelectorAll(".live-frame iframe");
+  if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  frames.forEach(function (iframe) {
+    var visible = false, started = false;
+    function start() {
+      var win, doc;
+      try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { return; }
+      if (started) return; started = true;
+      var css = doc.createElement("style");
+      css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}";
+      doc.head.appendChild(css);
+      var speed = iframe.width < 600 ? 170 : 150;   // site pixels per second
+      var y = 0, pauseUntil = performance.now() + 1800, last = performance.now();
+      function tick(now) {
+        var dt = Math.min(now - last, 100); last = now;
+        if (visible && now > pauseUntil) {
+          var max = doc.documentElement.scrollHeight - win.innerHeight;
+          y += speed * dt / 1000;
+          if (y >= max) { y = max; pauseUntil = now + 2200; win.scrollTo(0, y); setTimeout(function () { y = 0; win.scrollTo(0, 0); }, 2000); }
+          else win.scrollTo(0, y);
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) start(); }).observe(iframe);
+    } else { visible = true; }
+    iframe.addEventListener("load", function () { if (visible) start(); });
+    start();
+  });
+})();
