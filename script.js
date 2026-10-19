@@ -415,19 +415,23 @@ const PROJECT_STATUS = {
       if (!phone && !s.useTransform) {
         s.doc.querySelectorAll('header nav a[href^="#"]').forEach(function (a) {
           var t = s.doc.getElementById(a.getAttribute("href").slice(1));
-          if (t && a.getBoundingClientRect().width) list.push({ y: t.getBoundingClientRect().top + s.y - h, link: a });
+          if (t && a.getBoundingClientRect().width) list.push({ y: t.getBoundingClientRect().top + s.y - h, link: a, el: t });
         });
       }
       if (list.length < 2) {
         list = [];
         s.doc.querySelectorAll("main > section, main section[id], footer").forEach(function (el) {
-          list.push({ y: el.getBoundingClientRect().top + s.y - h });
+          list.push({ y: el.getBoundingClientRect().top + s.y - h, el: el });
         });
         list.sort(function (a, b) { return a.y - b.y; });
         list = list.filter(function (p, n) { return p.y > 200 && (n === 0 || p.y - list[n - 1].y > 280); });
       }
       var m = maxY();
-      list.forEach(function (p) { p.y = Math.max(0, Math.min(m, Math.round(p.y))); });
+      list.forEach(function (p) {
+        var r = p.el && p.el.querySelector('input[type="range"]');
+        if (r) { p.range = r; p.y = r.getBoundingClientRect().top + s.y - h - (phone ? 100 : 150); }   // frame the slider and its photos
+        p.y = Math.max(0, Math.min(m, Math.round(p.y)));
+      });
       return list;
     }
     function clickAt(link, id) {
@@ -439,6 +443,39 @@ const PROJECT_STATUS = {
         return wait(250, id);
       });
     }
+    // Drag a before/after slider back and forth, the way a visitor would try it
+    function slide(range, id) {
+      var min = Number(range.min || 0), max = Number(range.max || 100), start = Number(range.value);
+      var path = [start, min + (max - min) * 0.88, min + (max - min) * 0.12, start];
+      var k = scale();
+      function thumb(v) {
+        var r = range.getBoundingClientRect();
+        return [(r.left + r.width * (v - min) / (max - min)) * k, (r.top + r.height / 2) * k];
+      }
+      function setV(v) { range.value = String(Math.round(v)); range.dispatchEvent(new s.win.Event("input", { bubbles: true })); }
+      var p0 = thumb(start);
+      placeCursor(p0[0], p0[1]);
+      return wait(cursor ? 800 : 200, id).then(async function () {
+        if (cursor) cursor.classList.add("is-drag");
+        for (var n = 1; n < path.length && id === run; n++) {
+          var a = path[n - 1], b = path[n];
+          await new Promise(function (done) {
+            var t = 0, last = performance.now(), ms = 1100;
+            (function step(now) {
+              if (id !== run) return;
+              if (visible) t += (now - last) / ms;
+              last = now;
+              var v = a + (b - a) * easeInOut(Math.min(t, 1));
+              setV(v);
+              if (cursor) { cursor.style.transition = "none"; var q = thumb(v); placeCursor(q[0], q[1]); }
+              if (t >= 1) done(); else requestAnimationFrame(step);
+            })(last);
+          });
+          await wait(350, id);
+        }
+        if (cursor) { cursor.classList.remove("is-drag"); cursor.style.transition = ""; }
+      });
+    }
     async function tour(id) {
       await wait(1400, id);
       while (id === run) {
@@ -448,6 +485,7 @@ const PROJECT_STATUS = {
           if (p.link) await clickAt(p.link, id);
           var dist = Math.abs(p.y - s.y);
           if (dist > 4) await glide(p.y, phone ? Math.min(1300, 450 + dist * 0.55) : Math.min(1500, 600 + dist * 0.45), phone ? easeOut : easeInOut, id);
+          if (p.range) { await wait(500, id); await slide(p.range, id); }
           if (cursor) placeCursor(box.clientWidth * 0.62, box.clientHeight * 0.55);
           await wait(phone ? 1500 : 1800, id);
         }

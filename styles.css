@@ -2413,3 +2413,4 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .fake-cursor.is-click::after { animation: cur-ring 420ms ease-out; }
 @keyframes cur-press { 50% { transform: scale(0.82); } }
 @keyframes cur-ring { from { opacity: 1; transform: scale(0.2); } to { opacity: 0; transform: scale(1.4); } }
+.fake-cursor.is-drag svg { transform: scale(0.88); transition: transform 150ms; }
