@@ -1829,6 +1829,9 @@ body.menu-open { overflow: hidden; }
     radial-gradient(40% 35% at 20% 30%, rgba(255, 255, 255, 0.85), transparent 70%),
     radial-gradient(35% 30% at 70% 15%, rgba(255, 255, 255, 0.7), transparent 70%),
     radial-gradient(30% 25% at 50% 55%, rgba(220, 231, 247, 0.9), transparent 70%);
+  /* fade every edge so the fog never shows a hard border */
+  -webkit-mask-image: radial-gradient(farthest-side, #000 45%, transparent 100%);
+  mask-image: radial-gradient(farthest-side, #000 45%, transparent 100%);
 }
 .hero { isolation: isolate; }
 @media (prefers-reduced-motion: no-preference) {
@@ -2370,21 +2373,31 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 /* "Also great for" ticker */
 .ind-more { display: flex; align-items: center; gap: 16px; margin: clamp(20px, 3vw, 32px) 0; }
 .ind-more .hand { flex: none; font-size: 1.375rem; color: #2F5FD0; }
-.ind-marquee { display: flex; gap: 10px; overflow: hidden; min-width: 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.ind-marquee ul { display: flex; gap: 10px; flex: none; }
+.ind-marquee { overflow: hidden; min-width: 0; flex: 1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+/* One track holding two copies; sliding it by exactly half loops seamlessly. Transform only, so it runs on the GPU. */
+.ind-marquee__track { display: flex; width: max-content; }
+.ind-marquee ul { display: flex; gap: 10px; padding-right: 10px; flex: none; }
 .ind-marquee li { padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(15, 36, 73, 0.1); font-size: 0.875rem; font-weight: 600; color: #3C4A63; white-space: nowrap; }
 @media (prefers-reduced-motion: no-preference) {
-  .ind-marquee ul { animation: ind-scroll 38s linear infinite; }
-  .ind-marquee:hover ul { animation-play-state: paused; }
-  @keyframes ind-scroll { to { transform: translateX(calc(-100% - 10px)); } }
+  .ind-marquee__track { animation: ind-scroll 40s linear infinite; will-change: transform; }
+  @media (hover: hover) { .ind-marquee:hover .ind-marquee__track { animation-play-state: paused; } }
+  @keyframes ind-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 }
-@media (prefers-reduced-motion: reduce) { .ind-marquee { flex-wrap: wrap; -webkit-mask-image: none; mask-image: none; } .ind-marquee ul[aria-hidden] { display: none; } .ind-marquee ul { flex-wrap: wrap; } }
+@media (prefers-reduced-motion: reduce) { .ind-marquee__track { width: auto; } .ind-marquee ul[aria-hidden] { display: none; } .ind-marquee ul { flex-wrap: wrap; } }
 @media (max-width: 600px) { .ind-more { flex-direction: column; align-items: stretch; gap: 8px; } }
 @media (max-width: 600px) {
-  .ind-tabs { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; margin-inline: 0; padding: 0 0 6px; }
+  .ind-tabs { display: grid; grid-template-columns: 1fr; overflow: visible; margin-inline: 0; padding: 0 0 6px; }
   .ind-tab { justify-content: center; padding: 0 10px; font-size: 0.875rem; gap: 6px; min-height: 44px; }
   .ind-tab svg { width: 16px; height: 16px; }
 }
 .field__hint { margin-top: 6px; font-size: 0.8125rem; color: var(--muted); }
 .tone-dark .field__hint { color: rgba(228, 238, 255, 0.72); }
+.ind-soon { flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px; border: 1px dashed rgba(15, 36, 73, 0.25); border-radius: 999px; color: var(--muted); font-size: 0.9375rem; font-weight: 600; white-space: nowrap; }
+.ind-soon__dots { display: inline-flex; gap: 4px; }
+.ind-soon__dots i { width: 6px; height: 6px; border-radius: 50%; background: #FFC857; }
+@media (prefers-reduced-motion: no-preference) {
+  .ind-soon__dots i { animation: soon-dot 1.4s ease-in-out infinite; }
+  .ind-soon__dots i:nth-child(2) { animation-delay: 0.2s; } .ind-soon__dots i:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes soon-dot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+}
+@media (max-width: 600px) { .ind-soon { justify-content: center; font-size: 0.875rem; padding: 0 10px; } }

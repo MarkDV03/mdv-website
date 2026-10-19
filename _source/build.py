@@ -157,18 +157,6 @@ def page_index(root=''):
              src=CHRISTINA_URL, url_label='christinas-salon', live=True, name='Christina&rsquo;s Hair Salon', meta='Milpitas, CA &middot; Hair salon',
              text='A warm, easy site where customers see the services, find the salon inside Seafood City and tap to call. This is the real site, running live.',
              tags=['Tap to call', 'Today&rsquo;s hours', 'Directions'], cta='Visit the live site'),
-        dict(key='nails', tab='Nail &amp; spa', icon='<path d="M9 3h6v5H9z"/><path d="M8 8h8l1 13H7z"/>',
-             src='concepts/bayglow/', url_label='bayglow-nails', live=False, name='Bayglow Nail Bar', meta='Bay Area &middot; Nail salon chain',
-             text='A calm, upscale look for a nail bar with several studios: a clear menu with prices, a membership offer and a Book button at every location.',
-             tags=['Online booking', 'Price menu', 'Gift cards'], cta='Open the concept'),
-        dict(key='trades', tab='Home services', icon='<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
-             src='concepts/copperline/', url_label='copperline-plumbing', live=False, name='Copperline Plumbing &amp; Rooter', meta='Hayward, CA &middot; Plumber',
-             text='Built for the moment a pipe bursts: the phone number is always one tap away, with services, the cities served and reviews right up front.',
-             tags=['24/7 call button', 'Service areas', 'Booking form'], cta='Open the concept'),
-        dict(key='food', tab='Restaurants', icon='<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/>',
-             src='concepts/labrisa/', url_label='labrisa-taqueria', live=False, name='La Brisa Taquer&iacute;a', meta='Hayward, CA &middot; Family taquer&iacute;a',
-             text='Hungry people want three things fast: the menu, the hours and how to order. This concept puts all three on the first screen.',
-             tags=['Full menu', 'Order pickup', 'Hours &amp; map'], cta='Open the concept'),
     ]
     def ind_tab(n, d):
         on = n == 0
@@ -193,6 +181,7 @@ def page_index(root=''):
     SHOWCASE = f"""          <div class="showcase reveal" data-showcase>
             <div class="ind-tabs" role="tablist" aria-label="Industries">
               {''.join(ind_tab(n, d) for n, d in enumerate(IND))}
+              <span class="ind-soon"><span class="ind-soon__dots" aria-hidden="true"><i></i><i></i><i></i></span>More industries coming soon</span>
             </div>
             <div class="showcase__stage">
               <div class="live-media">
@@ -209,7 +198,7 @@ def page_index(root=''):
           </div>
           <div class="ind-more" aria-label="Other businesses I design for">
             <p class="hand">Also great for</p>
-            <div class="ind-marquee"><ul role="list">{marquee}</ul><ul role="list" aria-hidden="true">{marquee}</ul></div>
+            <div class="ind-marquee"><div class="ind-marquee__track"><ul role="list">{marquee}</ul><ul role="list" aria-hidden="true">{marquee}</ul></div></div>
           </div>
           <div class="projects projects--soon">
             <article class="project project--next project--wide reveal">
@@ -308,9 +297,9 @@ def page_index(root=''):
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="work-title">{"Recent work" if SHOW_WORK else "Work for every kind of business"}</h2>
+              <h2 class="h2" id="work-title">Recent work</h2>
             </div>
-            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'A live client site plus design concepts for other kinds of local businesses. Pick one to watch it run on a laptop and a phone.'}</p>
+            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'A real site I designed and built, running live on a laptop and a phone. More industries are coming soon.'}</p>
           </div>
 
 {WORK_GRID}        </div>
