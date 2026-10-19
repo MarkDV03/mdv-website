@@ -48,7 +48,7 @@ SCHEMA = {
 FAQ_SCHEMA = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type": "Question", "name": html.unescape(q), "acceptedAnswer": {"@type": "Answer", "text": html.unescape(a)}} for q, a in [('How much does a website cost?', 'Every business needs something a little different, so every project gets its own quote based on the pages and features you need. The concept is always free, so you see exactly what you would be getting before you spend anything.'), ('Is the free concept really free?', 'Yes. I design a new homepage for your business and send it to you. If you don&rsquo;t love it, you owe nothing and there are no hard feelings.'), ('How long does it take?', 'Most small business sites take about 2 to 4 weeks from the day you say yes to launch day. Having your photos and info ready speeds things up.'), ('I already have a website. Can you redesign it?', 'Absolutely. Most of my work is giving older sites a fresh look that works on phones. I can keep your domain, so customers still find you at the same address.'), ('Do I need to write the text or take photos?', 'No. I can write the words for you based on a quick chat, and use your own photos if you have them. Real photos of your work and your team always help the most.'), ('Will I own my website?', 'Yes. Once it&rsquo;s paid for, the site and the domain are yours. I&rsquo;m happy to stick around for updates, but you&rsquo;re never locked in.'), ('Can you help people find me on Google?', 'Every site I build is set up for Google from day one, with your services, hours and service area clearly listed. I can also help you set up or clean up your Google Business Profile.')]],
+    "mainEntity": [{"@type": "Question", "name": html.unescape(q), "acceptedAnswer": {"@type": "Answer", "text": html.unescape(a)}} for q, a in [('How much does a website cost?', 'Every business needs something a little different, so every project gets its own quote based on the pages and features you need. The concept is always free, so you see exactly what you would be getting before you spend anything.'), ('Is the free concept really free?', 'Yes. I design a new homepage for your business and send it to you. If you don&rsquo;t love it, you owe nothing and there are no hard feelings.'), ('How long does it take?', 'Most small business sites take about 2 to 4 weeks from the day you say yes to launch day. Having your photos and info ready speeds things up.'), ('I already have a website. Can you redesign it?', 'Absolutely. Most of my work is giving older sites a fresh look that works on phones. I can keep your domain, so customers still find you at the same address.'), ('Do I need to write the text or take photos?', 'No. I can write the words for you based on a quick chat, and use your own photos if you have them. Real photos of your work and your team always help the most.'), ('Will I own my website?', 'Yes. Once it&rsquo;s paid for, the site and the domain are yours. I&rsquo;m happy to stick around for updates, but you&rsquo;re never locked in.'), ('Are there any ongoing costs?', 'Just one small one: your domain name, like yourbusiness.com. It renews every year and usually costs about $10 to $25 a year, depending on the name and the company you buy it from. Some companies let you pay monthly instead. That money goes to the domain company, not to me, and it keeps your web address and your site up. Hosting for a small site like this is often free, or a few dollars a month.'), ('Can you help people find me on Google?', 'Every site I build is set up for Google from day one, with your services, hours and service area clearly listed. I can also help you set up or clean up your Google Business Profile.')]],
 }
 
 MAC_BAR = ('<div class="mac" aria-hidden="true"><div class="mac__menu"><span class="mac__apps"><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i></span>'
@@ -407,6 +407,10 @@ def page_index(root=''):
               <p>Yes. Once it&rsquo;s paid for, the site and the domain are yours. I&rsquo;m happy to stick around for updates, but you&rsquo;re never locked in.</p>
             </details>
             <details class="faq__item">
+              <summary>Are there any ongoing costs?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <p>Just one small one: your domain name, like yourbusiness.com. It renews every year and usually costs about $10 to $25 a year, depending on the name and the company you buy it from. Some companies let you pay monthly instead. That money goes to the domain company, not to me, and it keeps your web address and your site up. Hosting for a small site like this is often free, or a few dollars a month.</p>
+            </details>
+            <details class="faq__item">
               <summary>Can you help people find me on Google?<span class="faq__icon" aria-hidden="true"></span></summary>
               <p>Every site I build is set up for Google from day one, with your services, hours and service area clearly listed. I can also help you set up or clean up your Google Business Profile.</p>
             </details>
@@ -465,6 +469,11 @@ def page_index(root=''):
                 <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
                 <textarea id="f-message" name="message" rows="5" required aria-describedby="e-message" placeholder="What does your business do, and what would you like your website to do better?"></textarea>
                 <p class="field__error" id="e-message" aria-live="polite"></p>
+              </div>
+              <div class="field">
+                <label for="f-inspo">Websites you like <span class="opt">(optional)</span></label>
+                <textarea id="f-inspo" name="inspiration" rows="3" aria-describedby="h-inspo" placeholder="Paste links to any sites you love the look of, one per line"></textarea>
+                <p class="field__hint" id="h-inspo">Any kind of business works. I&rsquo;ll use them as inspiration for your free concept.</p>
               </div>
               <p class="form__status" role="alert" data-form-status></p>
               <button class="btn btn--lime btn--block" type="submit" data-submit>

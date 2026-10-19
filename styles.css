@@ -2385,3 +2385,5 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
   .ind-tab { justify-content: center; padding: 0 10px; font-size: 0.875rem; gap: 6px; min-height: 44px; }
   .ind-tab svg { width: 16px; height: 16px; }
 }
+.field__hint { margin-top: 6px; font-size: 0.8125rem; color: var(--muted); }
+.tone-dark .field__hint { color: rgba(228, 238, 255, 0.72); }
