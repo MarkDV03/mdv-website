@@ -41,25 +41,25 @@ const PROJECT_STATUS = {
 
   /* ---------- Header: switch to dark over dark sections ---------- */
   const header = document.querySelector(".site-header");
-  if (header) {
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const y = header.getBoundingClientRect().bottom - 8;
-      const x = Math.min(window.innerWidth / 2, 40);
-      header.style.pointerEvents = "none";
-      const under = document.elementFromPoint(x, y);
-      header.style.pointerEvents = "";
-      const tone = under && under.closest("[data-tone], .tone-dark");
-      const dark = !!tone && (tone.dataset.tone === "dark" || (!tone.dataset.tone && tone.classList.contains("tone-dark")));
-      header.classList.toggle("is-dark", dark);
+  const tones = document.querySelectorAll("[data-tone], .site-footer.tone-dark");
+  if (header && tones.length && "IntersectionObserver" in window) {
+    // Watch a 1px line just under the header instead of hit-testing on every scroll
+    let io;
+    const inLine = new Set();
+    const watch = () => {
+      if (io) io.disconnect();
+      inLine.clear();
+      const y = Math.round(header.getBoundingClientRect().bottom - 8);
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) inLine.add(e.target); else inLine.delete(e.target); });
+        const tone = [...inLine].pop();
+        header.classList.toggle("is-dark", !!tone && (tone.dataset.tone === "dark" || (!tone.dataset.tone && tone.classList.contains("tone-dark"))));
+      }, { rootMargin: `${-y}px 0px ${-(window.innerHeight - y - 1)}px 0px` });
+      tones.forEach((t) => io.observe(t));
     };
-    const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    update();
+    let rt;
+    window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(watch, 150); }, { passive: true });
+    watch();
   }
 
   /* ---------- Full-screen menu with focus trap ---------- */
@@ -345,7 +345,7 @@ const PROJECT_STATUS = {
   var frames = document.querySelectorAll(".live-frame iframe");
   if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   frames.forEach(function (iframe) {
-    var visible = false, started = false;
+    var visible = false, started = false, running = false, resume = null;
     function start() {
       var win, doc;
       try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { return; }
@@ -374,12 +374,13 @@ const PROJECT_STATUS = {
           if (y >= max) { y = max; pauseUntil = now + 2200; moveTo(y); setTimeout(function () { y = 0; moveTo(0); }, 2000); }
           else moveTo(y);
         }
-        requestAnimationFrame(tick);
+        if (visible) requestAnimationFrame(tick); else running = false;
       }
-      requestAnimationFrame(tick);
+      resume = function () { if (running) return; running = true; last = performance.now(); requestAnimationFrame(tick); };
+      resume();
     }
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) start(); }).observe(iframe);
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { start(); if (resume) resume(); } }).observe(iframe);
     } else { visible = true; }
     iframe.addEventListener("load", function () { if (visible) start(); });
     start();

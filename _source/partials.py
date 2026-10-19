@@ -8,6 +8,12 @@ def mark(root, lazy=False, alt=''):
     lz = ' loading="lazy"' if lazy else ''
     return (f'<img class="logo__mark" src="{root}assets/logo-mark-88.webp" srcset="{root}assets/logo-mark-176.webp 2x, {root}assets/logo-mark-264.webp 3x" '
             f'width="149" height="88" alt="{alt}"{lz} decoding="async">')
+def mark_anim(root):
+    # Header logo in three layers so the ring can spin in around the letters
+    def layer(n):
+        return (f'<img class="logo__layer logo__layer--{n}" src="{root}assets/logo-{n}-88.webp" srcset="{root}assets/logo-{n}-176.webp 2x, {root}assets/logo-{n}-264.webp 3x" '
+                f'width="149" height="88" alt="" decoding="async">')
+    return f'<span class="logo__mark logo__mark--anim">{layer("back")}{layer("mdv")}{layer("front")}</span>'
 SKY = (SCR / 'skyline.txt').read_text().strip()
 SKY2 = (SCR / 'skyline2.svg').read_text().strip()
 BAY_MAP = (SCR / 'bay-map.svg').read_text().strip()
@@ -80,7 +86,7 @@ def header(root, home=True):
     return f'''  <a class="skip-link" href="#main">Skip to content</a>
   <div class="frame">
     <header class="site-header" id="top">
-      <a class="logo" href="{root}index.html" aria-label="MDV Web Design, home">{mark(root)}<span class="logo__text" aria-hidden="true"><span class="logo__name">MDV Web Design</span><span class="logo__tag">Bay Area Websites</span></span></a>
+      <a class="logo" href="{root}index.html" aria-label="MDV Web Design, home">{mark_anim(root)}<span class="logo__text" aria-hidden="true"><span class="logo__name">MDV Web Design</span><span class="logo__tag">Bay Area Websites</span></span></a>
       <nav class="site-nav" aria-label="Main">
         <ul role="list">
 {links}
