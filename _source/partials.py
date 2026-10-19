@@ -132,6 +132,7 @@ def footer(root):
           <p class="site-footer__tag">Websites for local businesses, all around the Bay.</p>
           <a class="site-footer__mail" href="mailto:markdv.webdesign@gmail.com">markdv.webdesign@gmail.com</a>
         </div>
+        <p class="hand site-footer__area"><span class="sr-only">Areas served: </span><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         <div class="site-footer__bottom">
           <p>&copy; <span data-year>2026</span> MDV Web Design</p>
           <p>Hayward, CA &middot; Serving the whole Bay Area</p>
