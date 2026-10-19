@@ -338,7 +338,6 @@ def page_index(root=''):
             <div>
               <h2 class="h2" id="process-title">The concept is free. Owning it is quoted.</h2>
             </div>
-            <p class="lead">You see your new homepage before you pay anything. If you want to keep it, I quote the full site based on what your business needs, so the price fits the project.</p>
           </div>
           <ol class="steps" role="list">
 {step_html}
