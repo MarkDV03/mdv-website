@@ -273,13 +273,13 @@ const PROJECT_STATUS = {
       submitLabel.textContent = "Sending...";
 
       try {
-        const body = new URLSearchParams(new FormData(form)).toString();
-        const res = await fetch("/", {
+        const res = await fetch(form.action, {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body,
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
         });
-        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) throw new Error(data.message || "HTTP " + res.status);
         form.hidden = true;
         thanks.hidden = false;
         thanks.focus();

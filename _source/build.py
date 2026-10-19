@@ -421,9 +421,12 @@ def page_index(root=''):
           </div>
 
           <div class="form-card reveal" style="--d:80ms">
-            <form class="form" name="quote" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate data-quote-form>
-              <input type="hidden" name="form-name" value="quote">
-              <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <form class="form" name="quote" method="POST" action="https://api.web3forms.com/submit" novalidate data-quote-form>
+              <input type="hidden" name="access_key" value="468499aa-e51f-4e4e-a295-7cfdf873344c">
+              <input type="hidden" name="subject" value="New free concept request from MDV Web Design site">
+              <input type="hidden" name="from_name" value="MDV Web Design website">
+              <input type="hidden" name="redirect" value="https://markdv03.github.io/mdv-website/thanks.html">
+              <p class="hp" aria-hidden="true"><label>Leave this empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
               <p class="form__hint">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
 
               <div class="form__row">
