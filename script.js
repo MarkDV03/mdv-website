@@ -109,7 +109,8 @@ const PROJECT_STATUS = {
 
   /* ---------- Headlines: split into words for the word-by-word reveal ---------- */
   if (!reduceMotion.matches && "IntersectionObserver" in window) {
-    const heads = document.querySelectorAll(".hero__title, main .h2, .contact__title");
+    // Only the hero headline: section headings stay solid so fast scrolling never shows blank text
+    const heads = document.querySelectorAll(".hero__title");
     const splitNode = (node, counter) => {
       Array.from(node.childNodes).forEach((child) => {
         if (child.nodeType === 3) {
@@ -150,12 +151,14 @@ const PROJECT_STATUS = {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Scrolled in too fast to animate: show it straight away instead of fading in late
+            if (entry.boundingClientRect.top < window.innerHeight * 0.9) entry.target.style.transition = "none";
             entry.target.classList.add("is-visible");
             io.unobserve(entry.target);
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+      { rootMargin: "0px 0px 15% 0px", threshold: 0 }
     );
     reveals.forEach((el) => io.observe(el));
   }
