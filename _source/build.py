@@ -8,6 +8,8 @@ OUT = sys.argv[1]
 SHOW_WORK = len(sys.argv) > 2 and sys.argv[2] == 'full'
 # Christina's real site. The Work section shows it live, so it updates whenever her site does.
 CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://markdv03.github.io/Christinas-salon/')
+# Same-origin copy of Christina's site for the scrolling previews (the tour can only drive a page on this domain)
+CHRISTINA_PREVIEW = os.environ.get('CHRISTINA_PREVIEW', 'live/christinas-salon/')
 I = 'assets/img/work/'
 
 import os
@@ -154,7 +156,7 @@ def page_index(root=''):
     # Industry showcase: one device stage, a tab per industry. Add a business by adding a row.
     IND = [
         dict(key='salon', tab='Salons &amp; beauty', icon='<path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M12 15v6"/><path d="M8 21h8"/>',
-             src=CHRISTINA_URL, url_label='christinas-salon', live=True, name='Christina&rsquo;s Hair Salon', meta='Milpitas, CA &middot; Hair salon',
+             src=CHRISTINA_PREVIEW, live_url=CHRISTINA_URL, url_label='christinas-salon', live=True, name='Christina&rsquo;s Hair Salon', meta='Milpitas, CA &middot; Hair salon',
              text='A warm, easy site where customers see the services, find the salon inside Seafood City and tap to call. This is the real site, running live.',
              tags=['Tap to call', 'Today&rsquo;s hours', 'Directions'], cta='Visit the live site'),
     ]
@@ -173,7 +175,7 @@ def page_index(root=''):
               <p class="project__meta">{d['meta']}</p>
               <p class="project__text">{d['text']}</p>
               <ul class="tags" role="list">{tags}</ul>
-              <a class="btn btn--dark ind-cta" href="{d['src']}" target="_blank" rel="noopener">{d['cta']} {icon('arrow-right')}</a>
+              <a class="btn btn--dark ind-cta" href="{d['live_url']}" target="_blank" rel="noopener">{d['cta']} {icon('arrow-right')}</a>
             </div>"""
     first = IND[0]
     MORE = ['Barbershops', 'Auto repair', 'Bakeries', 'Dentists', 'Gyms', 'Landscapers', 'Cafes', 'Boba shops', 'Cleaners', 'Contractors', 'Florists', 'Pet groomers']
@@ -310,7 +312,7 @@ def page_index(root=''):
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="benefits-title">What every site comes with</h2>
+              <h2 class="h2" id="benefits-title">Built to bring in customers</h2>
             </div>
           </div>
           <ul class="benefits" role="list">

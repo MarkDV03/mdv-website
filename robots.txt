@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /live/
 
 Sitemap: https://mdvwebdesign.com/sitemap.xml
