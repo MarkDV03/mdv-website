@@ -1717,8 +1717,9 @@ body.menu-open { overflow: hidden; }
   @keyframes fade-up { from { opacity: 0; transform: translateY(12px) rotate(-3deg); } to { opacity: 1; transform: rotate(-3deg); } }
 
   /* Hand-drawn checks draw themselves in */
-  .js .benefit__check path { stroke-dasharray: 60; stroke-dashoffset: 60; transition: stroke-dashoffset 600ms var(--ease-out) calc(var(--d, 0ms) + 250ms); }
-  .js .benefit.is-visible .benefit__check path { stroke-dashoffset: 0; }
+  /* Each check draws as its row comes into view (script.js adds .is-drawn in scroll order) and resets once it leaves, so scrolling back up draws them bottom to top */
+  .js .benefit__check path { stroke-dasharray: 60; stroke-dashoffset: 60; transition: stroke-dashoffset 0s; }
+  .js .benefit.is-drawn .benefit__check path { stroke-dashoffset: 0; transition: stroke-dashoffset 550ms var(--ease-out) var(--cd, 0ms); }
 
   /* Step numbers pop like stickers */
   .js .step .step__num { display: inline-block; transform: scale(0.3) rotate(-20deg); opacity: 0; transition: transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--d, 0ms) + 150ms), opacity 300ms ease calc(var(--d, 0ms) + 150ms); }

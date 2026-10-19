@@ -163,6 +163,29 @@ const PROJECT_STATUS = {
     reveals.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Benefit checks: draw in scroll order, both directions ---------- */
+  const benefits = document.querySelectorAll(".benefit");
+  if (benefits.length) {
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      benefits.forEach((el) => el.classList.add("is-drawn"));
+    } else {
+      let lastY = window.scrollY;
+      const checkIO = new IntersectionObserver(
+        (entries) => {
+          const down = window.scrollY >= lastY;
+          lastY = window.scrollY;
+          const entering = entries.filter((e) => e.isIntersecting).map((e) => e.target);
+          entries.forEach((e) => { if (!e.isIntersecting) e.target.classList.remove("is-drawn"); });
+          // Several rows at once (fast scroll or wide screen): draw them one after another in the direction of travel
+          entering.sort((a, b) => (a.getBoundingClientRect().top - b.getBoundingClientRect().top) * (down ? 1 : -1));
+          entering.forEach((el, i) => { el.style.setProperty("--cd", i * 120 + "ms"); el.classList.add("is-drawn"); });
+        },
+        { rootMargin: "-10% 0px -20% 0px", threshold: 0 }
+      );
+      benefits.forEach((el) => checkIO.observe(el));
+    }
+  }
+
   /* ---------- Before / after sliders ---------- */
   document.querySelectorAll("[data-compare]").forEach((box) => {
     const range = box.querySelector(".compare__range");
