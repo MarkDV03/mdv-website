@@ -68,14 +68,14 @@ def head(root, title, desc, path, extra_fonts='', preload=''):
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="https://mdvwebdesign.com/assets/og.png">
+  <meta property="og:image" content="https://mdvwebdesign.com/assets/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MDV Web Design: websites for local businesses in the Bay Area">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title}">
   <meta name="twitter:description" content="{desc}">
-  <meta name="twitter:image" content="https://mdvwebdesign.com/assets/og.png">
+  <meta name="twitter:image" content="https://mdvwebdesign.com/assets/og.png?v=2">
   <link rel="icon" href="{root}favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="{root}apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">

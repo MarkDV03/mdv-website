@@ -38,7 +38,7 @@ SCHEMA = {
     "description": "Modern, mobile-friendly websites for Bay Area businesses, based in Hayward. Free concept redesigns.",
     "url": "https://mdvwebdesign.com/",
     "email": "markdv.webdesign@gmail.com",
-    "image": "https://mdvwebdesign.com/assets/og.png",
+    "image": "https://mdvwebdesign.com/assets/og.png?v=2",
     "logo": "https://mdvwebdesign.com/assets/logo-mark-512.png",
     "founder": {"@type": "Person", "name": "Mark"},
     "address": {"@type": "PostalAddress", "addressLocality": "Hayward", "addressRegion": "CA", "addressCountry": "US"},
