@@ -28,7 +28,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&family=Instrument+Serif:ital@1&display=swap"></noscript>
-  <link rel="stylesheet" href="styles.css?v=a579bb4c">
+  <link rel="stylesheet" href="styles.css?v=568f34cc">
   <script>document.documentElement.classList.add('js');</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MDV Web Design","description":"Modern, mobile-friendly websites for Bay Area businesses, based in Hayward. Free concept redesigns.","url":"https://mdvwebdesign.com/","email":"markdv.webdesign@gmail.com","image":"https://mdvwebdesign.com/assets/og.png","logo":"https://mdvwebdesign.com/assets/logo-mark-512.png","founder":{"@type":"Person","name":"Mark"},"address":{"@type":"PostalAddress","addressLocality":"Hayward","addressRegion":"CA","addressCountry":"US"},"areaServed":[{"@type":"City","name":"Hayward"},{"@type":"City","name":"San Francisco"},{"@type":"City","name":"Oakland"},{"@type":"City","name":"San Leandro"},{"@type":"City","name":"San Lorenzo"},{"@type":"City","name":"Castro Valley"},{"@type":"City","name":"Union City"},{"@type":"City","name":"Fremont"},{"@type":"City","name":"Newark"},{"@type":"City","name":"Dublin"},{"@type":"City","name":"Pleasanton"},{"@type":"City","name":"Livermore"},{"@type":"City","name":"Milpitas"},{"@type":"City","name":"San Jose"},{"@type":"City","name":"Santa Clara"},{"@type":"City","name":"Sunnyvale"}],"knowsAbout":["Web design","Website redesign","Local SEO","Mobile-friendly websites"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a website cost?","acceptedAnswer":{"@type":"Answer","text":"Every business needs something a little different, so every project gets its own quote based on the pages and features you need. The concept is always free, so you see exactly what you would be getting before you spend anything."}},{"@type":"Question","name":"Is the free concept really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. I design a new homepage for your business and send it to you. If you don\u2019t love it, you owe nothing and there are no hard feelings."}},{"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"Most small business sites take about 2 to 4 weeks from the day you say yes to launch day. Having your photos and info ready speeds things up."}},{"@type":"Question","name":"I already have a website. Can you redesign it?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Most of my work is giving older sites a fresh look that works on phones. I can keep your domain, so customers still find you at the same address."}},{"@type":"Question","name":"Do I need to write the text or take photos?","acceptedAnswer":{"@type":"Answer","text":"No. I can write the words for you based on a quick chat, and use your own photos if you have them. Real photos of your work and your team always help the most."}},{"@type":"Question","name":"Will I own my website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once it\u2019s paid for, the site and the domain are yours. I\u2019m happy to stick around for updates, but you\u2019re never locked in."}},{"@type":"Question","name":"Can you help people find me on Google?","acceptedAnswer":{"@type":"Answer","text":"Every site I build is set up for Google from day one, with your services, hours and service area clearly listed. I can also help you set up or clean up your Google Business Profile."}}]}</script>
@@ -63,7 +63,7 @@
           <p class="hero__sub lead">Shops, salons, plumbers, restaurants. If your website is old, slow or hard to use on a phone, send me your business name. I&rsquo;ll design a new homepage for free, and you decide from there.</p>
           <div class="hero__ctas">
             <a class="btn btn--dark" href="#contact">Get my free concept <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
-            <a class="btn btn--light" href="#process">How it works</a>
+            <a class="btn btn--light" href="#work">See my work</a>
           </div>
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
@@ -94,28 +94,64 @@
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="work-title">Recent work</h2>
+              <h2 class="h2" id="work-title">Work for every kind of business</h2>
             </div>
-            <p class="lead">Here&rsquo;s a real site I designed and built, running live. Before you spend anything on yours, I design a free concept first. If you don&rsquo;t love it, no hard feelings.</p>
+            <p class="lead">A live client site plus design concepts for other kinds of local businesses. Pick one to watch it run on a laptop and a phone.</p>
           </div>
 
-          <div class="projects projects--soon">
-            <article class="project project--live project--wide reveal">
+          <div class="showcase reveal" data-showcase>
+            <div class="ind-tabs" role="tablist" aria-label="Industries">
+              <button class="ind-tab" type="button" role="tab" id="tab-salon" aria-controls="panel-salon" aria-selected="true" data-src="https://markdv03.github.io/Christinas-salon/" data-url="christinas-salon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M12 15v6"/><path d="M8 21h8"/></svg>Salons &amp; beauty</button><button class="ind-tab" type="button" role="tab" id="tab-nails" aria-controls="panel-nails" aria-selected="false" tabindex="-1" data-src="concepts/bayglow/" data-url="bayglow-nails"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3h6v5H9z"/><path d="M8 8h8l1 13H7z"/></svg>Nail &amp; spa</button><button class="ind-tab" type="button" role="tab" id="tab-trades" aria-controls="panel-trades" aria-selected="false" tabindex="-1" data-src="concepts/copperline/" data-url="copperline-plumbing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Home services</button><button class="ind-tab" type="button" role="tab" id="tab-food" aria-controls="panel-food" aria-selected="false" tabindex="-1" data-src="concepts/labrisa/" data-url="labrisa-taqueria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg>Restaurants</button>
+            </div>
+            <div class="showcase__stage">
               <div class="live-media">
                 <div class="laptop live-laptop">
-                  <div class="laptop__lid"><div class="laptop__display"><div class="mac" aria-hidden="true"><div class="mac__menu"><span class="mac__apps"><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i></span><span class="mac__tray"><svg viewBox="0 0 16 12" focusable="false"><path d="M1 4.2a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.2 0zM3.8 7a6 6 0 0 1 8.4 0l-1.4 1.4a4 4 0 0 0-5.6 0zM8 11.6 6.4 10a2.3 2.3 0 0 1 3.2 0z" fill="currentColor"/></svg><svg viewBox="0 0 26 12" focusable="false"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity=".5"/><rect x="2.5" y="2.5" width="15" height="7" rx="1.6" fill="currentColor"/><rect x="23.6" y="4" width="1.6" height="4" rx=".8" fill="currentColor" fill-opacity=".5"/></svg><i>Thu 9:41 AM</i></span></div><div class="mac__safari"><span class="mac__lights"><i></i><i></i><i></i></span><span class="mac__nav">&lsaquo;&nbsp;&nbsp;&rsaquo;</span><span class="mac__url"><svg viewBox="0 0 10 12" focusable="false"><path d="M2.5 5V3.6a2.5 2.5 0 0 1 5 0V5" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="5" width="8" height="6.4" rx="1.4" fill="currentColor"/></svg>christinas-salon</span><span class="mac__tools"><i>+</i></span></div></div><div class="live-frame" data-w="1440" data-h="900"><iframe src="https://markdv03.github.io/Christinas-salon/" title="Christina&rsquo;s Hair Salon website, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+                  <div class="laptop__lid"><div class="laptop__display"><div class="mac" aria-hidden="true"><div class="mac__menu"><span class="mac__apps"><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i></span><span class="mac__tray"><svg viewBox="0 0 16 12" focusable="false"><path d="M1 4.2a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.2 0zM3.8 7a6 6 0 0 1 8.4 0l-1.4 1.4a4 4 0 0 0-5.6 0zM8 11.6 6.4 10a2.3 2.3 0 0 1 3.2 0z" fill="currentColor"/></svg><svg viewBox="0 0 26 12" focusable="false"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity=".5"/><rect x="2.5" y="2.5" width="15" height="7" rx="1.6" fill="currentColor"/><rect x="23.6" y="4" width="1.6" height="4" rx=".8" fill="currentColor" fill-opacity=".5"/></svg><i>Thu 9:41 AM</i></span></div><div class="mac__safari"><span class="mac__lights"><i></i><i></i><i></i></span><span class="mac__nav">&lsaquo;&nbsp;&nbsp;&rsaquo;</span><span class="mac__url"><svg viewBox="0 0 10 12" focusable="false"><path d="M2.5 5V3.6a2.5 2.5 0 0 1 5 0V5" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="5" width="8" height="6.4" rx="1.4" fill="currentColor"/></svg><span data-url-label>christinas-salon</span></span><span class="mac__tools"><i>+</i></span></div></div><div class="live-frame" data-w="1440" data-h="900"><iframe src="https://markdv03.github.io/Christinas-salon/" title="Website preview, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
                   <div class="laptop__base" aria-hidden="true"></div>
                 </div>
-                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="https://markdv03.github.io/Christinas-salon/" title="Christina&rsquo;s Hair Salon website, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
+                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="https://markdv03.github.io/Christinas-salon/" title="Website preview, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
               </div>
-              <div class="project__body">
-                <p class="project__eyebrow"><span class="live-dot" aria-hidden="true"></span>Live site</p>
-                <h3 class="project__title"><a href="https://markdv03.github.io/Christinas-salon/" target="_blank" rel="noopener">Christina&rsquo;s Hair Salon</a></h3>
-                <p class="project__meta">Milpitas, CA &middot; Hair salon</p>
-                <p class="project__text">A warm, easy site where customers can see the services, find the salon and tap to call. This is the real site running live, so you&rsquo;re seeing exactly what her customers see.</p>
-                <span class="project__more" aria-hidden="true">Visit the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+              <div class="showcase__info">
+            <div class="ind-panel" role="tabpanel" id="panel-salon" aria-labelledby="tab-salon">
+              <p class="ind-badge ind-badge--live"><span class="live-dot" aria-hidden="true"></span>Live client site</p>
+              <h3 class="project__title">Christina&rsquo;s Hair Salon</h3>
+              <p class="project__meta">Milpitas, CA &middot; Hair salon</p>
+              <p class="project__text">A warm, easy site where customers see the services, find the salon inside Seafood City and tap to call. This is the real site, running live.</p>
+              <ul class="tags" role="list"><li>Tap to call</li><li>Today&rsquo;s hours</li><li>Directions</li></ul>
+              <a class="btn btn--dark ind-cta" href="https://markdv03.github.io/Christinas-salon/" target="_blank" rel="noopener">Visit the live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+            </div>
+            <div class="ind-panel" role="tabpanel" id="panel-nails" aria-labelledby="tab-nails" hidden>
+              <p class="ind-badge">Design concept</p>
+              <h3 class="project__title">Bayglow Nail Bar</h3>
+              <p class="project__meta">Bay Area &middot; Nail salon chain</p>
+              <p class="project__text">A calm, upscale look for a nail bar with several studios: a clear menu with prices, a membership offer and a Book button at every location.</p>
+              <ul class="tags" role="list"><li>Online booking</li><li>Price menu</li><li>Gift cards</li></ul>
+              <a class="btn btn--dark ind-cta" href="concepts/bayglow/" target="_blank" rel="noopener">Open the concept <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+            </div>
+            <div class="ind-panel" role="tabpanel" id="panel-trades" aria-labelledby="tab-trades" hidden>
+              <p class="ind-badge">Design concept</p>
+              <h3 class="project__title">Copperline Plumbing &amp; Rooter</h3>
+              <p class="project__meta">Hayward, CA &middot; Plumber</p>
+              <p class="project__text">Built for the moment a pipe bursts: the phone number is always one tap away, with services, the cities served and reviews right up front.</p>
+              <ul class="tags" role="list"><li>24/7 call button</li><li>Service areas</li><li>Booking form</li></ul>
+              <a class="btn btn--dark ind-cta" href="concepts/copperline/" target="_blank" rel="noopener">Open the concept <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+            </div>
+            <div class="ind-panel" role="tabpanel" id="panel-food" aria-labelledby="tab-food" hidden>
+              <p class="ind-badge">Design concept</p>
+              <h3 class="project__title">La Brisa Taquer&iacute;a</h3>
+              <p class="project__meta">Hayward, CA &middot; Family taquer&iacute;a</p>
+              <p class="project__text">Hungry people want three things fast: the menu, the hours and how to order. This concept puts all three on the first screen.</p>
+              <ul class="tags" role="list"><li>Full menu</li><li>Order pickup</li><li>Hours &amp; map</li></ul>
+              <a class="btn btn--dark ind-cta" href="concepts/labrisa/" target="_blank" rel="noopener">Open the concept <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+            </div>
               </div>
-            </article>
+            </div>
+          </div>
+          <div class="ind-more" aria-label="Other businesses I design for">
+            <p class="hand">Also great for</p>
+            <div class="ind-marquee"><ul role="list"><li>Barbershops</li><li>Auto repair</li><li>Bakeries</li><li>Dentists</li><li>Gyms</li><li>Landscapers</li><li>Cafes</li><li>Boba shops</li><li>Cleaners</li><li>Contractors</li><li>Florists</li><li>Pet groomers</li></ul><ul role="list" aria-hidden="true"><li>Barbershops</li><li>Auto repair</li><li>Bakeries</li><li>Dentists</li><li>Gyms</li><li>Landscapers</li><li>Cafes</li><li>Boba shops</li><li>Cleaners</li><li>Contractors</li><li>Florists</li><li>Pet groomers</li></ul></div>
+          </div>
+          <div class="projects projects--soon">
             <article class="project project--next project--wide reveal">
               <div class="project__body">
                 <p class="project__eyebrow hand">Your business could be next</p>
@@ -471,6 +507,6 @@
       <a class="mail" href="mailto:markdv.webdesign@gmail.com">markdv.webdesign@gmail.com</a>
     </div>
   </div>
-  <script src="script.js?v=a579bb4c" defer></script>
+  <script src="script.js?v=568f34cc" defer></script>
 </body>
 </html>

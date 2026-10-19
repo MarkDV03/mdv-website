@@ -151,6 +151,81 @@ def page_index(root=''):
             <p>{d}</p>
           </li>''' for n, (t, d, badge) in enumerate(steps))
 
+    # Industry showcase: one device stage, a tab per industry. Add a business by adding a row.
+    IND = [
+        dict(key='salon', tab='Salons &amp; beauty', icon='<path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M12 15v6"/><path d="M8 21h8"/>',
+             src=CHRISTINA_URL, url_label='christinas-salon', live=True, name='Christina&rsquo;s Hair Salon', meta='Milpitas, CA &middot; Hair salon',
+             text='A warm, easy site where customers see the services, find the salon inside Seafood City and tap to call. This is the real site, running live.',
+             tags=['Tap to call', 'Today&rsquo;s hours', 'Directions'], cta='Visit the live site'),
+        dict(key='nails', tab='Nail &amp; spa', icon='<path d="M9 3h6v5H9z"/><path d="M8 8h8l1 13H7z"/>',
+             src='concepts/bayglow/', url_label='bayglow-nails', live=False, name='Bayglow Nail Bar', meta='Bay Area &middot; Nail salon chain',
+             text='A calm, upscale look for a nail bar with several studios: a clear menu with prices, a membership offer and a Book button at every location.',
+             tags=['Online booking', 'Price menu', 'Gift cards'], cta='Open the concept'),
+        dict(key='trades', tab='Home services', icon='<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+             src='concepts/copperline/', url_label='copperline-plumbing', live=False, name='Copperline Plumbing &amp; Rooter', meta='Hayward, CA &middot; Plumber',
+             text='Built for the moment a pipe bursts: the phone number is always one tap away, with services, the cities served and reviews right up front.',
+             tags=['24/7 call button', 'Service areas', 'Booking form'], cta='Open the concept'),
+        dict(key='food', tab='Restaurants', icon='<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/>',
+             src='concepts/labrisa/', url_label='labrisa-taqueria', live=False, name='La Brisa Taquer&iacute;a', meta='Hayward, CA &middot; Family taquer&iacute;a',
+             text='Hungry people want three things fast: the menu, the hours and how to order. This concept puts all three on the first screen.',
+             tags=['Full menu', 'Order pickup', 'Hours &amp; map'], cta='Open the concept'),
+    ]
+    def ind_tab(n, d):
+        on = n == 0
+        return (f'<button class="ind-tab" type="button" role="tab" id="tab-{d["key"]}" aria-controls="panel-{d["key"]}" aria-selected="{"true" if on else "false"}"'
+                f'{"" if on else " tabindex=\"-1\""} data-src="{d["src"]}" data-url="{d["url_label"]}">'
+                f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{d["icon"]}</svg>{d["tab"]}</button>')
+    def ind_panel(n, d):
+        badge = ('<p class="ind-badge ind-badge--live"><span class="live-dot" aria-hidden="true"></span>Live client site</p>' if d['live']
+                 else '<p class="ind-badge">Design concept</p>')
+        tags = ''.join(f'<li>{t}</li>' for t in d['tags'])
+        return f"""            <div class="ind-panel" role="tabpanel" id="panel-{d['key']}" aria-labelledby="tab-{d['key']}"{'' if n == 0 else ' hidden'}>
+              {badge}
+              <h3 class="project__title">{d['name']}</h3>
+              <p class="project__meta">{d['meta']}</p>
+              <p class="project__text">{d['text']}</p>
+              <ul class="tags" role="list">{tags}</ul>
+              <a class="btn btn--dark ind-cta" href="{d['src']}" target="_blank" rel="noopener">{d['cta']} {icon('arrow-right')}</a>
+            </div>"""
+    first = IND[0]
+    MORE = ['Barbershops', 'Auto repair', 'Bakeries', 'Dentists', 'Gyms', 'Landscapers', 'Cafes', 'Boba shops', 'Cleaners', 'Contractors', 'Florists', 'Pet groomers']
+    marquee = ''.join(f'<li>{m}</li>' for m in MORE)
+    SHOWCASE = f"""          <div class="showcase reveal" data-showcase>
+            <div class="ind-tabs" role="tablist" aria-label="Industries">
+              {''.join(ind_tab(n, d) for n, d in enumerate(IND))}
+            </div>
+            <div class="showcase__stage">
+              <div class="live-media">
+                <div class="laptop live-laptop">
+                  <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', '<span data-url-label>' + first['url_label'] + '</span>')}<div class="live-frame" data-w="1440" data-h="900"><iframe src="{first['src']}" title="Website preview, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+                  <div class="laptop__base" aria-hidden="true"></div>
+                </div>
+                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{first['src']}" title="Website preview, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
+              </div>
+              <div class="showcase__info">
+{chr(10).join(ind_panel(n, d) for n, d in enumerate(IND))}
+              </div>
+            </div>
+          </div>
+          <div class="ind-more" aria-label="Other businesses I design for">
+            <p class="hand">Also great for</p>
+            <div class="ind-marquee"><ul role="list">{marquee}</ul><ul role="list" aria-hidden="true">{marquee}</ul></div>
+          </div>
+          <div class="projects projects--soon">
+            <article class="project project--next project--wide reveal">
+              <div class="project__body">
+                <p class="project__eyebrow hand">Your business could be next</p>
+                <h3 class="project__title"><a href="#contact">Want a site like this?</a></h3>
+                <p class="project__meta">Send me your business name and I&rsquo;ll send back a free concept of your new homepage. If you want to keep it, I&rsquo;ll quote the price to own it, with no obligation.</p>
+                <span class="project__more" aria-hidden="true">Get a free concept {icon('arrow-right')}</span>
+              </div>
+              <div class="ghost-site" aria-hidden="true">
+                <div class="ghost-site__bar"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
+                <div class="ghost-site__body"><b></b><b></b><b class="short"></b><em></em><span class="hand">your site here</span></div>
+              </div>
+            </article>
+          </div>
+"""
     WORK_GRID = (f'''          <!-- To add a case study: copy one <article class="project"> block below, swap the images, text and link. -->
           <div class="projects">
             <article class="project reveal">
@@ -192,37 +267,7 @@ def page_index(root=''):
               </div>
             </article>
           </div>
-''' if SHOW_WORK else f'''          <div class="projects projects--soon">
-            <article class="project project--live project--wide reveal">
-              <div class="live-media">
-                <div class="laptop live-laptop">
-                  <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', 'christinas-salon')}<div class="live-frame" data-w="1440" data-h="900"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
-                  <div class="laptop__base" aria-hidden="true"></div>
-                </div>
-                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{CHRISTINA_URL}" title="Christina&rsquo;s Hair Salon website, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
-              </div>
-              <div class="project__body">
-                <p class="project__eyebrow"><span class="live-dot" aria-hidden="true"></span>Live site</p>
-                <h3 class="project__title"><a href="{CHRISTINA_URL}" target="_blank" rel="noopener">Christina&rsquo;s Hair Salon</a></h3>
-                <p class="project__meta">Milpitas, CA &middot; Hair salon</p>
-                <p class="project__text">A warm, easy site where customers can see the services, find the salon and tap to call. This is the real site running live, so you&rsquo;re seeing exactly what her customers see.</p>
-                <span class="project__more" aria-hidden="true">Visit the live site {icon('arrow-right')}</span>
-              </div>
-            </article>
-            <article class="project project--next project--wide reveal">
-              <div class="project__body">
-                <p class="project__eyebrow hand">Your business could be next</p>
-                <h3 class="project__title"><a href="#contact">Want a site like this?</a></h3>
-                <p class="project__meta">Send me your business name and I&rsquo;ll send back a free concept of your new homepage. If you want to keep it, I&rsquo;ll quote the price to own it, with no obligation.</p>
-                <span class="project__more" aria-hidden="true">Get a free concept {icon('arrow-right')}</span>
-              </div>
-              <div class="ghost-site" aria-hidden="true">
-                <div class="ghost-site__bar"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
-                <div class="ghost-site__body"><b></b><b></b><b class="short"></b><em></em><span class="hand">your site here</span></div>
-              </div>
-            </article>
-          </div>
-''')
+''' if SHOW_WORK else SHOWCASE)
     html = f'''{head(r, 'MDV Web Design | Bay Area Web Designer',
      'Modern, mobile-friendly websites for Bay Area businesses, based in Hayward. Free concept redesigns. Contact MDV Web Design for a quote.', '',
      preload='' if not SHOW_WORK else f'\n  <link rel="preload" as="image" href="{I}carrillo-desktop.webp" imagesrcset="{I}carrillo-desktop-960.webp 960w, {I}carrillo-desktop.webp 1440w, {I}carrillo-desktop-2x.webp 2880w" imagesizes="(min-width: 1100px) 900px, 84vw" fetchpriority="high">')}{LOADER_SCRIPT}
@@ -242,7 +287,7 @@ def page_index(root=''):
           <p class="hero__sub lead">Shops, salons, plumbers, restaurants. If your website is old, slow or hard to use on a phone, send me your business name. I&rsquo;ll design a new homepage for free, and you decide from there.</p>
           <div class="hero__ctas">
             <a class="btn btn--dark" href="#contact">Get my free concept {icon('arrow-right')}</a>
-            <a class="btn btn--light" href="#{'work' if SHOW_WORK else 'process'}">{'See my work' if SHOW_WORK else 'How it works'}</a>
+            <a class="btn btn--light" href="#work">See my work</a>
           </div>
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
@@ -263,9 +308,9 @@ def page_index(root=''):
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="work-title">Recent work</h2>
+              <h2 class="h2" id="work-title">{"Recent work" if SHOW_WORK else "Work for every kind of business"}</h2>
             </div>
-            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'Here&rsquo;s a real site I designed and built, running live. Before you spend anything on yours, I design a free concept first. If you don&rsquo;t love it, no hard feelings.'}</p>
+            <p class="lead">{'Concept redesigns for real local businesses. Built first, pitched second, so you can see the result before you spend a dollar.' if SHOW_WORK else 'A live client site plus design concepts for other kinds of local businesses. Pick one to watch it run on a laptop and a phone.'}</p>
           </div>
 
 {WORK_GRID}        </div>

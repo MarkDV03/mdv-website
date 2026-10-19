@@ -342,52 +342,102 @@ const PROJECT_STATUS = {
   }
 })();
 
-/* Live project previews: slowly scroll through the real site, loop, and only while on screen.
-   Works when both sites share an origin (markdv03.github.io); otherwise the top of the site just shows. */
+/* Live project previews: slowly scroll through the site in each frame, loop, and only while on screen.
+   Works for same-origin sites (everything on markdv03.github.io); otherwise the top of the site just shows.
+   Re-arms on every load, so switching industries starts the new site from the top. */
 (function () {
   var frames = document.querySelectorAll(".live-frame iframe");
   if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   frames.forEach(function (iframe) {
-    var visible = false, started = false, running = false, resume = null;
-    function start() {
+    var phone = iframe.width < 600;
+    var speed = phone ? 360 : 320;   // site pixels per second
+    var viewH = Number(iframe.getAttribute("height"));
+    var visible = false, running = false, s = null;
+    function arm() {
       var win, doc;
-      try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { return; }
-      if (started) return; started = true;
+      try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { s = null; return; }
+      if (s && s.doc === doc) return;
       var css = doc.createElement("style");
+      // phone: hide announcement bars that would sit under the camera notch
       css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}" +
-        (iframe.width < 600 ? ".topbar{display:none!important}" : "");   // phone: hide the hours bar under the camera notch
+        (phone ? ".topbar,.announce,.alert,.top-bar,.hours-bar{display:none!important}" : "");
       doc.head.appendChild(css);
-      var speed = iframe.width < 600 ? 360 : 320;   // site pixels per second
-      var viewH = Number(iframe.getAttribute("height")) || win.innerHeight;
-      var root = doc.documentElement, useTransform = false;
-      // iPhone Safari won't scroll inside a frame, so slide the page itself instead
-      function moveTo(v) {
-        if (!useTransform) {
-          win.scrollTo(0, v);
-          if (v > 40 && Math.abs(win.scrollY - v) > 20) { useTransform = true; win.scrollTo(0, 0); root.style.overflow = "hidden"; root.style.willChange = "transform"; }
-          else return;
-        }
-        root.style.transform = "translateY(" + (-v) + "px)";
-      }
-      var y = 0, pauseUntil = performance.now() + 1000, last = performance.now();
-      function tick(now) {
-        var dt = Math.min(now - last, 100); last = now;
-        if (visible && now > pauseUntil) {
-          var max = (doc.body ? Math.max(doc.body.scrollHeight, root.scrollHeight) : root.scrollHeight) - viewH;
-          y += speed * dt / 1000;
-          if (y >= max) { y = max; pauseUntil = now + 1600; moveTo(y); setTimeout(function () { y = 0; moveTo(0); }, 1400); }
-          else moveTo(y);
-        }
-        if (visible) requestAnimationFrame(tick); else running = false;
-      }
-      resume = function () { if (running) return; running = true; last = performance.now(); requestAnimationFrame(tick); };
-      resume();
+      s = { doc: doc, win: win, root: doc.documentElement, y: 0, useTransform: false, pauseUntil: performance.now() + 1000, back: 0 };
+      go();
     }
+    // iPhone Safari won't scroll inside a frame, so slide the page itself instead
+    function moveTo(v) {
+      if (!s.useTransform) {
+        s.win.scrollTo(0, v);
+        if (v > 40 && Math.abs(s.win.scrollY - v) > 20) { s.useTransform = true; s.win.scrollTo(0, 0); s.root.style.overflow = "hidden"; s.root.style.willChange = "transform"; }
+        else return;
+      }
+      s.root.style.transform = "translateY(" + (-v) + "px)";
+    }
+    var last = 0;
+    function tick(now) {
+      var dt = Math.min(now - last, 100); last = now;
+      if (!s || !visible) { running = false; return; }
+      if (s.back && now > s.back) { s.back = 0; s.y = 0; moveTo(0); s.pauseUntil = now + 1000; }
+      else if (now > s.pauseUntil) {
+        var body = s.doc.body, max = (body ? Math.max(body.scrollHeight, s.root.scrollHeight) : s.root.scrollHeight) - viewH;
+        s.y += speed * dt / 1000;
+        if (s.y >= max) { s.y = max; moveTo(max); s.pauseUntil = Infinity; s.back = now + 1400; }
+        else moveTo(s.y);
+      }
+      requestAnimationFrame(tick);
+    }
+    function go() { if (running || !visible || !s) return; running = true; last = performance.now(); requestAnimationFrame(tick); }
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { start(); if (resume) resume(); } }).observe(iframe);
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { arm(); go(); } }).observe(iframe);
     } else { visible = true; }
-    iframe.addEventListener("load", function () { if (visible) start(); });
-    start();
+    iframe.addEventListener("load", function () { s = null; arm(); });
+    arm();
+  });
+})();
+
+/* Work: industry tabs swap the site shown in the laptop and phone */
+(function () {
+  var box = document.querySelector("[data-showcase]");
+  if (!box) return;
+  var tabs = Array.prototype.slice.call(box.querySelectorAll(".ind-tab"));
+  var frames = box.querySelectorAll(".live-frame iframe");
+  var label = box.querySelector("[data-url-label]");
+  var timer;
+  function select(tab, focus) {
+    if (tab.getAttribute("aria-selected") === "true") return;
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute("aria-controls"));
+      panel.hidden = !on;
+      if (on) { panel.classList.remove("is-entering"); void panel.offsetWidth; panel.classList.add("is-entering"); }
+    });
+    if (focus) tab.focus();
+    tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+    if (label) label.textContent = tab.dataset.url;
+    box.classList.add("is-switching");
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      var waiting = frames.length;
+      frames.forEach(function (f) {
+        f.addEventListener("load", function done() { f.removeEventListener("load", done); if (--waiting === 0) box.classList.remove("is-switching"); });
+        f.src = tab.dataset.src;
+      });
+      setTimeout(function () { box.classList.remove("is-switching"); }, 2500);   // never stay hidden if a load is slow
+    }, 260);
+  }
+  tabs.forEach(function (t, n) {
+    t.addEventListener("click", function () { select(t); });
+    t.addEventListener("keydown", function (e) {
+      var k = e.key, m = tabs.length, to = null;
+      if (k === "ArrowRight") to = tabs[(n + 1) % m];
+      else if (k === "ArrowLeft") to = tabs[(n - 1 + m) % m];
+      else if (k === "Home") to = tabs[0];
+      else if (k === "End") to = tabs[m - 1];
+      if (to) { e.preventDefault(); select(to, true); }
+    });
   });
 })();
 
