@@ -457,7 +457,7 @@ const PROJECT_STATUS = {
   }
   logos.forEach(function (l) {
     l.addEventListener("animationend", function (e) {
-      if (e.animationName === "logo-ring") { l.classList.remove("is-playing"); l.classList.add("is-done"); }
+      if (e.animationName === "logo-star" && e.target.classList.contains("logo__layer--star2")) { /* last piece to finish */ l.classList.remove("is-playing"); l.classList.add("is-done"); }
     });
   });
   var head = document.querySelector(".site-header .logo__mark--anim");

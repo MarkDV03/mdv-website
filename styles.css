@@ -2312,7 +2312,19 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
     mask-image: conic-gradient(from 245deg at 50% 50%, #000 calc(var(--sweep) - 10deg), transparent var(--sweep));
     --sweep: 0deg;
   }
-  .js .logo__mark--anim:not(.is-done) .logo__layer--mdv { opacity: 0; }
+  .js .logo__mark--anim:not(.is-done) .logo__layer--mdv, .js .logo__mark--anim:not(.is-done) .logo__layer--star1, .js .logo__mark--anim:not(.is-done) .logo__layer--star2 { opacity: 0; }
+  .logo__layer--star1 { transform-origin: 90.6% 12.8%; }
+  .logo__layer--star2 { transform-origin: 95.8% 25.4%; }
+  /* Stars pop in and twinkle as the ring sweeps past them */
+  .logo__mark--anim.is-playing .logo__layer--star1 { animation: logo-star 750ms cubic-bezier(0.34, 1.56, 0.64, 1) 620ms both; }
+  .logo__mark--anim.is-playing .logo__layer--star2 { animation: logo-star 750ms cubic-bezier(0.34, 1.56, 0.64, 1) 760ms both; }
+  @keyframes logo-star {
+    0% { opacity: 0; transform: scale(0) rotate(-120deg); }
+    45% { opacity: 1; transform: scale(1.45) rotate(15deg); }
+    65% { transform: scale(0.85) rotate(-5deg); }
+    82% { transform: scale(1.15) rotate(0deg); }
+    100% { opacity: 1; transform: none; }
+  }
   .logo__mark--anim.is-playing .logo__layer--back, .logo__mark--anim.is-playing .logo__layer--front { animation: logo-ring 1300ms cubic-bezier(0.45, 0, 0.25, 1) both; }
   .logo__mark--anim.is-playing .logo__layer--mdv { animation: logo-mdv 900ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both; }
   @keyframes logo-ring { from { --sweep: 0deg; } to { --sweep: 370deg; } }

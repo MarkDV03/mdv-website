@@ -19,7 +19,7 @@ def mark_anim(root, cls='logo__mark', lazy=False, label='', big=False):
             src = f'src="{root}assets/logo-{n}-88.webp" srcset="{root}assets/logo-{n}-176.webp 2x, {root}assets/logo-{n}-264.webp 3x"'
         return f'<img class="logo__layer logo__layer--{n}" {src} width="149" height="88" alt=""{lz} decoding="async">'
     aria = f' role="img" aria-label="{label}"' if label else ''
-    return f'<span class="{cls} logo__mark--anim"{aria}>{layer("back")}{layer("mdv")}{layer("front")}</span>'
+    return f'<span class="{cls} logo__mark--anim"{aria}>{layer("back")}{layer("mdv")}{layer("front")}{layer("star1")}{layer("star2")}</span>'
 SKY = (SCR / 'skyline.txt').read_text().strip()
 SKY2 = (SCR / 'skyline2.svg').read_text().strip()
 BAY_MAP = (SCR / 'bay-map.svg').read_text().strip()
