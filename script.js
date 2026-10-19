@@ -342,56 +342,140 @@ const PROJECT_STATUS = {
   }
 })();
 
-/* Live project previews: slowly scroll through the site in each frame, loop, and only while on screen.
-   Works for same-origin sites (everything on markdv03.github.io); otherwise the top of the site just shows.
-   Re-arms on every load, so switching industries starts the new site from the top. */
+/* Live project previews: browse the site in each frame like a real visitor, and only while on screen.
+   Laptop: a cursor clicks each menu link, the page glides there and pauses to "read".
+   Phone: flick from section to section with a natural slow-down.
+   Works for same-origin sites (everything on markdv03.github.io); otherwise the top of the site just shows. */
 (function () {
   var frames = document.querySelectorAll(".live-frame iframe");
   if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var easeInOut = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
   frames.forEach(function (iframe) {
     var phone = iframe.width < 600;
-    var speed = phone ? 360 : 320;   // site pixels per second
     var viewH = Number(iframe.getAttribute("height"));
-    var visible = false, running = false, s = null;
-    function arm() {
-      var win, doc;
-      try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { s = null; return; }
-      if (s && s.doc === doc) return;
-      var css = doc.createElement("style");
-      // phone: hide announcement bars that would sit under the camera notch
-      css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}" +
-        (phone ? ".topbar,.announce,.alert,.top-bar,.hours-bar{display:none!important}" : "");
-      doc.head.appendChild(css);
-      s = { doc: doc, win: win, root: doc.documentElement, y: 0, useTransform: false, pauseUntil: performance.now() + 1000, back: 0 };
-      go();
+    var box = iframe.parentNode;
+    var visible = false, s = null, run = 0;
+    var cursor = null;
+    if (!phone) {
+      cursor = document.createElement("span");
+      cursor.className = "fake-cursor";
+      cursor.setAttribute("aria-hidden", "true");
+      cursor.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L9.6 19z" fill="#0F2449" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+      box.appendChild(cursor);
     }
+    function scale() { return box.clientWidth / Number(box.dataset.w); }
+    function placeCursor(x, y) { if (cursor) cursor.style.transform = "translate(" + x + "px," + y + "px)"; }
+
     // iPhone Safari won't scroll inside a frame, so slide the page itself instead
     function moveTo(v) {
       if (!s.useTransform) {
         s.win.scrollTo(0, v);
         if (v > 40 && Math.abs(s.win.scrollY - v) > 20) { s.useTransform = true; s.win.scrollTo(0, 0); s.root.style.overflow = "hidden"; s.root.style.willChange = "transform"; }
-        else return;
+        else { s.y = v; return; }
       }
       s.root.style.transform = "translateY(" + (-v) + "px)";
+      s.y = v;
     }
-    var last = 0;
-    function tick(now) {
-      var dt = Math.min(now - last, 100); last = now;
-      if (!s || !visible) { running = false; return; }
-      if (s.back && now > s.back) { s.back = 0; s.y = 0; moveTo(0); s.pauseUntil = now + 1000; }
-      else if (now > s.pauseUntil) {
-        var body = s.doc.body, max = (body ? Math.max(body.scrollHeight, s.root.scrollHeight) : s.root.scrollHeight) - viewH;
-        s.y += speed * dt / 1000;
-        if (s.y >= max) { s.y = max; moveTo(max); s.pauseUntil = Infinity; s.back = now + 1400; }
-        else moveTo(s.y);
+    function maxY() { var b = s.doc.body; return Math.max(0, (b ? Math.max(b.scrollHeight, s.root.scrollHeight) : s.root.scrollHeight) - viewH); }
+    function headerH() {
+      var h = s.doc.querySelector("header");
+      if (!h) return 0;
+      var pos = s.win.getComputedStyle(h).position;
+      return pos === "sticky" || pos === "fixed" ? h.getBoundingClientRect().height : 0;
+    }
+
+    // Promise helpers that freeze while the frame is off screen and quit if the site reloads
+    function wait(ms, id) {
+      return new Promise(function (done) {
+        var left = ms, last = performance.now();
+        (function step(now) {
+          if (id !== run) return;
+          if (visible) left -= now - last;
+          last = now;
+          if (left <= 0) done(); else requestAnimationFrame(step);
+        })(last);
+      });
+    }
+    function glide(to, ms, ease, id) {
+      return new Promise(function (done) {
+        var from = s.y, t = 0, last = performance.now();
+        (function step(now) {
+          if (id !== run) return;
+          if (visible) t += (now - last) / ms;
+          last = now;
+          if (t >= 1) { moveTo(to); done(); return; }
+          moveTo(from + (to - from) * ease(t));
+          requestAnimationFrame(step);
+        })(last);
+      });
+    }
+    function stops() {
+      var h = headerH(), list = [];
+      if (!phone && !s.useTransform) {
+        s.doc.querySelectorAll('header nav a[href^="#"]').forEach(function (a) {
+          var t = s.doc.getElementById(a.getAttribute("href").slice(1));
+          if (t && a.getBoundingClientRect().width) list.push({ y: t.getBoundingClientRect().top + s.y - h, link: a });
+        });
       }
-      requestAnimationFrame(tick);
+      if (list.length < 2) {
+        list = [];
+        s.doc.querySelectorAll("main > section, main section[id], footer").forEach(function (el) {
+          list.push({ y: el.getBoundingClientRect().top + s.y - h });
+        });
+        list.sort(function (a, b) { return a.y - b.y; });
+        list = list.filter(function (p, n) { return p.y > 200 && (n === 0 || p.y - list[n - 1].y > 280); });
+      }
+      var m = maxY();
+      list.forEach(function (p) { p.y = Math.max(0, Math.min(m, Math.round(p.y))); });
+      return list;
     }
-    function go() { if (running || !visible || !s) return; running = true; last = performance.now(); requestAnimationFrame(tick); }
+    function clickAt(link, id) {
+      var r = link.getBoundingClientRect(), k = scale();
+      placeCursor((r.left + r.width / 2) * k, (r.top + r.height / 2) * k);
+      return wait(750, id).then(function () {
+        if (!cursor) return;
+        cursor.classList.remove("is-click"); void cursor.offsetWidth; cursor.classList.add("is-click");
+        return wait(250, id);
+      });
+    }
+    async function tour(id) {
+      await wait(1400, id);
+      while (id === run) {
+        var list = stops();
+        for (var n = 0; n < list.length && id === run; n++) {
+          var p = list[n];
+          if (p.link) await clickAt(p.link, id);
+          var dist = Math.abs(p.y - s.y);
+          if (dist > 4) await glide(p.y, phone ? Math.min(1300, 450 + dist * 0.55) : Math.min(1500, 600 + dist * 0.45), phone ? easeOut : easeInOut, id);
+          if (cursor) placeCursor(box.clientWidth * 0.62, box.clientHeight * 0.55);
+          await wait(phone ? 1500 : 1800, id);
+        }
+        if (id !== run) return;
+        await wait(600, id);
+        await glide(0, 1200, easeInOut, id);
+        await wait(1800, id);
+      }
+    }
+    function arm() {
+      var win, doc;
+      try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { s = null; return; }
+      if (s && s.doc === doc) return;
+      var css = doc.createElement("style");
+      // no scrollbar, no smooth-scroll fighting us; phone: hide bars that would sit under the camera notch;
+      // show scroll-in content right away so nothing looks blank mid-tour
+      css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}" +
+        "[data-reveal],.reveal{opacity:1!important;transform:none!important}" +
+        (phone ? ".topbar,.announce,.alert,.top-bar,.hours-bar{display:none!important}" : "");
+      doc.head.appendChild(css);
+      s = { doc: doc, win: win, root: doc.documentElement, y: 0, useTransform: false };
+      if (cursor) placeCursor(box.clientWidth * 0.62, box.clientHeight * 0.55);
+      tour(++run);
+    }
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { arm(); go(); } }).observe(iframe);
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) arm(); }).observe(iframe);
     } else { visible = true; }
-    iframe.addEventListener("load", function () { s = null; arm(); });
+    iframe.addEventListener("load", function () { s = null; run++; arm(); });
     arm();
   });
 })();
