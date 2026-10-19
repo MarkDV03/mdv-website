@@ -312,7 +312,7 @@ def page_index(root=''):
           <figure class="polaroid reveal">
             <span class="polaroid__tape" aria-hidden="true"></span>
             <div class="polaroid__window">
-              {mark_anim('', cls='polaroid__logo', lazy=True)}
+              {mark_anim('', cls='polaroid__logo', lazy=True, big=True)}
               <img class="polaroid__pic" src="assets/img/mark.jpg" width="840" height="1050" alt="Mark, the web designer behind MDV Web Design" loading="lazy" decoding="async" onerror="this.remove()">
             </div>
             <figcaption class="hand">Mark &middot; MDV Web Design<small>Hayward, CA</small></figcaption>

@@ -8,12 +8,16 @@ def mark(root, lazy=False, alt=''):
     lz = ' loading="lazy"' if lazy else ''
     return (f'<img class="logo__mark" src="{root}assets/logo-mark-88.webp" srcset="{root}assets/logo-mark-176.webp 2x, {root}assets/logo-mark-264.webp 3x" '
             f'width="149" height="88" alt="{alt}"{lz} decoding="async">')
-def mark_anim(root, cls='logo__mark', lazy=False, label=''):
+def mark_anim(root, cls='logo__mark', lazy=False, label='', big=False):
     # Logo in three layers so the ring can draw itself around the letters (script.js plays it)
     lz = ' loading="lazy"' if lazy else ''
     def layer(n):
-        return (f'<img class="logo__layer logo__layer--{n}" src="{root}assets/logo-{n}-88.webp" srcset="{root}assets/logo-{n}-176.webp 2x, {root}assets/logo-{n}-264.webp 3x" '
-                f'width="149" height="88" alt=""{lz} decoding="async">')
+        if big:  # large logo (About photo): pick by width so phones get a sharp copy
+            src = (f'src="{root}assets/logo-{n}-264.webp" srcset="{root}assets/logo-{n}-264.webp 447w, {root}assets/logo-{n}-528.webp 894w, '
+                   f'{root}assets/logo-{n}-792.webp 1340w" sizes="(min-width: 900px) 300px, 80vw"')
+        else:
+            src = f'src="{root}assets/logo-{n}-88.webp" srcset="{root}assets/logo-{n}-176.webp 2x, {root}assets/logo-{n}-264.webp 3x"'
+        return f'<img class="logo__layer logo__layer--{n}" {src} width="149" height="88" alt=""{lz} decoding="async">'
     aria = f' role="img" aria-label="{label}"' if label else ''
     return f'<span class="{cls} logo__mark--anim"{aria}>{layer("back")}{layer("mdv")}{layer("front")}</span>'
 SKY = (SCR / 'skyline.txt').read_text().strip()

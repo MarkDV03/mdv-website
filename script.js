@@ -354,9 +354,10 @@ const PROJECT_STATUS = {
       try { win = iframe.contentWindow; doc = iframe.contentDocument; if (!doc || !doc.head || doc.URL === "about:blank" || doc.readyState === "loading") return; } catch (e) { return; }
       if (started) return; started = true;
       var css = doc.createElement("style");
-      css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}";
+      css.textContent = "html{scrollbar-width:none;scroll-behavior:auto!important}html::-webkit-scrollbar{display:none}" +
+        (iframe.width < 600 ? ".topbar{display:none!important}" : "");   // phone: hide the hours bar under the camera notch
       doc.head.appendChild(css);
-      var speed = iframe.width < 600 ? 170 : 150;   // site pixels per second
+      var speed = iframe.width < 600 ? 360 : 320;   // site pixels per second
       var viewH = Number(iframe.getAttribute("height")) || win.innerHeight;
       var root = doc.documentElement, useTransform = false;
       // iPhone Safari won't scroll inside a frame, so slide the page itself instead
@@ -368,13 +369,13 @@ const PROJECT_STATUS = {
         }
         root.style.transform = "translateY(" + (-v) + "px)";
       }
-      var y = 0, pauseUntil = performance.now() + 1800, last = performance.now();
+      var y = 0, pauseUntil = performance.now() + 1000, last = performance.now();
       function tick(now) {
         var dt = Math.min(now - last, 100); last = now;
         if (visible && now > pauseUntil) {
           var max = (doc.body ? Math.max(doc.body.scrollHeight, root.scrollHeight) : root.scrollHeight) - viewH;
           y += speed * dt / 1000;
-          if (y >= max) { y = max; pauseUntil = now + 2200; moveTo(y); setTimeout(function () { y = 0; moveTo(0); }, 2000); }
+          if (y >= max) { y = max; pauseUntil = now + 1600; moveTo(y); setTimeout(function () { y = 0; moveTo(0); }, 1400); }
           else moveTo(y);
         }
         if (visible) requestAnimationFrame(tick); else running = false;
