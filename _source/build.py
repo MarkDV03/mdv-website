@@ -278,7 +278,6 @@ def page_index(root=''):
             <div>
               <h2 class="h2" id="benefits-title">What every site comes with</h2>
             </div>
-            <p class="lead">Nothing fancy for the sake of it. Just the things that get people to call, book or walk in.</p>
           </div>
           <ul class="benefits" role="list">
 {ben_html}
