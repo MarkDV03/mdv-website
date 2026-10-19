@@ -2301,20 +2301,20 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .live-phone .phone { width: 100%; }
 .live-phone .phone__display { background: #fff; }
 
-/* Header logo: ring draws itself from its left tip around, MDV slides in from the right */
+/* Logos: ring draws itself from its left tip around, MDV slides in from the right (script.js adds .is-playing) */
 .logo__mark--anim { position: relative; display: block; aspect-ratio: 149 / 88; flex: none; }
 .logo__layer { position: absolute; inset: 0; width: 100%; height: 100%; }
 @property --sweep { syntax: "<angle>"; inherits: false; initial-value: 370deg; }
 @media (prefers-reduced-motion: no-preference) {
-  .logo__layer--back, .logo__layer--front {
+  .js .logo__mark--anim:not(.is-done) .logo__layer--back, .js .logo__mark--anim:not(.is-done) .logo__layer--front {
     /* 245deg points at the swoosh's left tip; the visible slice grows clockwise from there */
     -webkit-mask-image: conic-gradient(from 245deg at 50% 50%, #000 calc(var(--sweep) - 10deg), transparent var(--sweep));
     mask-image: conic-gradient(from 245deg at 50% 50%, #000 calc(var(--sweep) - 10deg), transparent var(--sweep));
-    animation: logo-ring 1300ms cubic-bezier(0.45, 0, 0.25, 1) 100ms both;
+    --sweep: 0deg;
   }
-  .logo__layer--mdv { animation: logo-mdv 900ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both; }
-  .show-loader .logo__layer--back, .show-loader .logo__layer--front { animation-delay: 1350ms; }
-  .show-loader .logo__layer--mdv { animation-delay: 1700ms; }
+  .js .logo__mark--anim:not(.is-done) .logo__layer--mdv { opacity: 0; }
+  .logo__mark--anim.is-playing .logo__layer--back, .logo__mark--anim.is-playing .logo__layer--front { animation: logo-ring 1300ms cubic-bezier(0.45, 0, 0.25, 1) both; }
+  .logo__mark--anim.is-playing .logo__layer--mdv { animation: logo-mdv 900ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both; }
   @keyframes logo-ring { from { --sweep: 0deg; } to { --sweep: 370deg; } }
   @keyframes logo-mdv {
     from { opacity: 0; transform: translateX(70%); }

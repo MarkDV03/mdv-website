@@ -8,12 +8,14 @@ def mark(root, lazy=False, alt=''):
     lz = ' loading="lazy"' if lazy else ''
     return (f'<img class="logo__mark" src="{root}assets/logo-mark-88.webp" srcset="{root}assets/logo-mark-176.webp 2x, {root}assets/logo-mark-264.webp 3x" '
             f'width="149" height="88" alt="{alt}"{lz} decoding="async">')
-def mark_anim(root):
-    # Header logo in three layers so the ring can spin in around the letters
+def mark_anim(root, cls='logo__mark', lazy=False, label=''):
+    # Logo in three layers so the ring can draw itself around the letters (script.js plays it)
+    lz = ' loading="lazy"' if lazy else ''
     def layer(n):
         return (f'<img class="logo__layer logo__layer--{n}" src="{root}assets/logo-{n}-88.webp" srcset="{root}assets/logo-{n}-176.webp 2x, {root}assets/logo-{n}-264.webp 3x" '
-                f'width="149" height="88" alt="" decoding="async">')
-    return f'<span class="logo__mark logo__mark--anim">{layer("back")}{layer("mdv")}{layer("front")}</span>'
+                f'width="149" height="88" alt=""{lz} decoding="async">')
+    aria = f' role="img" aria-label="{label}"' if label else ''
+    return f'<span class="{cls} logo__mark--anim"{aria}>{layer("back")}{layer("mdv")}{layer("front")}</span>'
 SKY = (SCR / 'skyline.txt').read_text().strip()
 SKY2 = (SCR / 'skyline2.svg').read_text().strip()
 BAY_MAP = (SCR / 'bay-map.svg').read_text().strip()
@@ -103,7 +105,7 @@ def menu(root, home=True):
     links = '\n'.join(f'        <li><a href="{base}#{i}"><small>0{n+1}</small>{t}</a></li>' for n, (i, t) in enumerate(NAV))
     return f'''  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
     <div class="menu__top">
-      {mark(root, alt='MDV Web Design')}
+      {mark_anim(root, label='MDV Web Design')}
       <button class="btn btn--ghost-dark btn--sm menu-close" type="button">Close {icon('close')}</button>
     </div>
     <nav class="menu__nav" aria-label="Menu">
@@ -122,7 +124,7 @@ def footer(root):
       <div class="container">
         <div class="site-footer__skyline" aria-hidden="true">{SKY2}</div>
         <div class="site-footer__row">
-          <a class="logo" href="{root}index.html" aria-label="MDV Web Design, home">{mark(root, lazy=True)}</a>
+          <a class="logo" href="{root}index.html" aria-label="MDV Web Design, home">{mark_anim(root, lazy=True)}</a>
           <p class="site-footer__tag">Websites for local businesses, all around the Bay.</p>
           <a class="site-footer__mail" href="mailto:markdv.webdesign@gmail.com">markdv.webdesign@gmail.com</a>
         </div>

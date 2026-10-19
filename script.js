@@ -389,3 +389,45 @@ const PROJECT_STATUS = {
     start();
   });
 })();
+
+/* Logos: the ring draws itself around MDV. The header logo replays on every new section,
+   the others whenever they come into view, and the menu logo when the menu opens. */
+(function () {
+  var logos = document.querySelectorAll(".logo__mark--anim");
+  if (!logos.length) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    logos.forEach(function (l) { l.classList.add("is-done"); });
+    return;
+  }
+  function play(el) {
+    el.classList.remove("is-done", "is-playing");
+    void el.offsetWidth; // restart the animation
+    el.classList.add("is-playing");
+  }
+  logos.forEach(function (l) {
+    l.addEventListener("animationend", function (e) {
+      if (e.animationName === "logo-ring") { l.classList.remove("is-playing"); l.classList.add("is-done"); }
+    });
+  });
+  var head = document.querySelector(".site-header .logo__mark--anim");
+  if (head) {
+    var current = null, ready = false;
+    // Thin line 40% down the screen: whichever section crosses it is the one you're in
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting || e.target === current) return;
+        current = e.target;
+        if (ready) play(head);
+      });
+    }, { rootMargin: "-40% 0px -60% 0px" });
+    document.querySelectorAll("main > section, main > div > section, .site-footer").forEach(function (s) { io.observe(s); });
+    // First visit waits for the loader to clear
+    setTimeout(function () { ready = true; play(head); }, document.documentElement.classList.contains("show-loader") ? 1350 : 100);
+  }
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) play(e.target); });
+  }, { threshold: 0.6 });
+  logos.forEach(function (l) { if (l !== head && !l.closest(".menu")) seen.observe(l); });
+  var menuLogo = document.querySelector(".menu .logo__mark--anim"), toggle = document.querySelector(".menu-toggle");
+  if (menuLogo && toggle) toggle.addEventListener("click", function () { setTimeout(function () { play(menuLogo); }, 150); });
+})();
