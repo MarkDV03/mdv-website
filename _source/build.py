@@ -425,7 +425,7 @@ def page_index(root=''):
               <input type="hidden" name="access_key" value="468499aa-e51f-4e4e-a295-7cfdf873344c">
               <input type="hidden" name="subject" value="New free concept request from MDV Web Design site">
               <input type="hidden" name="from_name" value="MDV Web Design website">
-              <input type="hidden" name="redirect" value="https://markdv03.github.io/mdv-website/thanks.html">
+              <input type="hidden" name="redirect" value="https://mdvwebdesign.com/thanks.html">
               <p class="hp" aria-hidden="true"><label>Leave this empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
               <p class="form__hint">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
 
