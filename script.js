@@ -390,8 +390,8 @@ const PROJECT_STATUS = {
   });
 })();
 
-/* Logos: the ring draws itself around MDV. The header logo replays on every new section,
-   the others whenever they come into view, and the menu logo when the menu opens. */
+/* Logos: the ring draws itself around MDV. The top bar logo plays on load, the others
+   each time you scroll to them, and the menu logo when the menu opens. */
 (function () {
   var logos = document.querySelectorAll(".logo__mark--anim");
   if (!logos.length) return;
@@ -410,20 +410,8 @@ const PROJECT_STATUS = {
     });
   });
   var head = document.querySelector(".site-header .logo__mark--anim");
-  if (head) {
-    var current = null, ready = false;
-    // Thin line 40% down the screen: whichever section crosses it is the one you're in
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting || e.target === current) return;
-        current = e.target;
-        if (ready) play(head);
-      });
-    }, { rootMargin: "-40% 0px -60% 0px" });
-    document.querySelectorAll("main > section, main > div > section, .site-footer").forEach(function (s) { io.observe(s); });
-    // First visit waits for the loader to clear
-    setTimeout(function () { ready = true; play(head); }, document.documentElement.classList.contains("show-loader") ? 1350 : 100);
-  }
+  // Top bar logo plays once on load (after the first-visit loader clears)
+  if (head) setTimeout(function () { play(head); }, document.documentElement.classList.contains("show-loader") ? 1350 : 100);
   var seen = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { if (e.isIntersecting) play(e.target); });
   }, { threshold: 0.6 });
