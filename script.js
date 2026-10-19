@@ -284,6 +284,7 @@ const PROJECT_STATUS = {
         thanks.hidden = false;
         thanks.focus();
       } catch (err) {
+        if (err instanceof TypeError) { form.submit(); return; } // blocked or offline fetch: post the form normally, Web3Forms redirects to thanks.html
         status.innerHTML =
           'Sorry, that didn’t send. Please try again, or email me at <a href="mailto:markdv.webdesign@gmail.com">markdv.webdesign@gmail.com</a>.';
         submit.disabled = false;
