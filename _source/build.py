@@ -319,7 +319,7 @@ def page_index(root=''):
           <ul class="benefits" role="list">
 {ben_html}
           </ul>
-          <div class="street" aria-hidden="true">{''.join(doodle(n) for n in ['taco-truck', 'bakery', 'barbershop', 'coffee', 'auto-shop', 'transamerica', 'salon', 'florist', 'boba', 'landscaping', 'plumber-van'])}</div>
+          <div class="street" aria-hidden="true">{''.join(doodle(n) for n in ['taco-truck', 'bakery', 'barbershop', 'coffee', 'auto-shop', 'transamerica', 'hair-salon', 'florist', 'boba', 'landscaping', 'plumber-van'])}</div>
         </div>
       </section>
 

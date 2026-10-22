@@ -126,7 +126,7 @@ def menu(root, home=True):
 def footer(root):
     return f'''    <footer class="site-footer tone-dark">
       <div class="container">
-        <div class="site-footer__skyline" aria-hidden="true">{SKY2}</div>
+        <div class="site-footer__skyline" aria-hidden="true">{SKY2.replace("xMidYMax meet", "none")}</div>
         <div class="site-footer__row">
           <a class="logo" href="{root}index.html" aria-label="MDV Web Design, home">{mark_anim(root, lazy=True)}</a>
           <p class="site-footer__tag">Websites for local businesses, all around the Bay.</p>

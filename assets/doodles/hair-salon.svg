@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2F5FD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 220 190">
+<path d="M22 176 V64 Q22 40 46 40 H174 Q198 40 198 64 V176"/>
+<rect x="78" y="14" width="64" height="24" rx="12"/><text x="110" y="32" text-anchor="middle" font-family="Caveat, cursive" font-size="20" font-weight="700" fill="#2F5FD0" stroke="none">Salon</text>
+<path d="M38 176 V108 Q38 90 58 90 Q78 90 78 108 V176 M70 140 v6"/>
+<path d="M96 150 V108 Q96 82 138 82 Q180 82 180 108 V150 Z"/>
+<ellipse cx="138" cy="106" rx="12" ry="15" stroke-width="1.6"/>
+<path d="M124 150 v-14 h28 v14 M120 136 h36 M128 136 v-12 q10 -6 20 0 v12" stroke-width="1.6"/>
+<circle cx="104" cy="66" r="4" stroke-width="1.5"/><circle cx="116" cy="66" r="4" stroke-width="1.5"/><path d="M107 63 L122 52 M113 63 L98 52" stroke-width="1.5"/>
+<path d="M186 176 h-14 l2 -16 h10 z M179 160 c-6 -8 -8 -16 -2 -22 M179 160 c6 -8 9 -14 4 -21" stroke-width="1.6"/>
+<path d="M4 176 H216"/>
+</svg>

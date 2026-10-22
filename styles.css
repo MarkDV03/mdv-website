@@ -1992,7 +1992,7 @@ html { overflow-x: clip; }
   .street { margin-inline: calc(50% - 50vw); padding-inline: clamp(16px, 2vw, 32px); gap: clamp(10px, 1.6vw, 28px); }
   .street .doodle { height: clamp(54px, 6vw, 100px); }
 }
-.street .doodle--boba, .street .doodle--coffee, .street .doodle--salon { height: clamp(44px, 5.4vw, 80px); }
+.street .doodle--boba, .street .doodle--coffee { height: clamp(44px, 5.4vw, 80px); }
 .street .doodle--transamerica { height: clamp(70px, 9vw, 136px); }
 @media (max-width: 767px) {
   .has-doodles > .doodle { opacity: 0.09; }
@@ -2431,3 +2431,9 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 @keyframes cur-press { 50% { transform: scale(0.82); } }
 @keyframes cur-ring { from { opacity: 1; transform: scale(0.2); } to { opacity: 0; transform: scale(1.4); } }
 .fake-cursor.is-drag svg { transform: scale(0.88); transition: transform 150ms; }
+
+/* Footer skyline fills the footer side to side on bigger screens (the page frame clips it at its rounded edges) */
+@media (min-width: 900px) {
+  .site-footer .site-footer__skyline { margin-inline: calc(50% - 50vw); }
+  .site-footer .site-footer__skyline svg { height: clamp(200px, 15.6vw, 300px); }
+}
