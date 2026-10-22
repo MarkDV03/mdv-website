@@ -371,7 +371,6 @@ def page_index(root=''):
         <div class="container faq">
           <div class="section-head reveal">
             <h2 class="h2" id="faq-title">Questions people ask</h2>
-            <p class="lead">Have a question? These are the ones business owners ask me most, with honest answers.</p>
           </div>
           <div class="faq__list reveal">
             <details class="faq__item">
