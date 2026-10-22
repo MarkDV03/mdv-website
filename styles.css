@@ -259,9 +259,7 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   color: inherit;
 }
 .logo__mark { width: auto; height: 54px; margin: -4px 0; }
-.site-header.is-dark .logo__mark,
-.menu__top .logo__mark,
-.site-footer .logo__mark { filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff); }
+
 
 .site-nav { display: none; }
 .site-nav ul { display: flex; gap: 2px; }
@@ -1842,8 +1840,12 @@ body.menu-open { overflow: hidden; }
 }
 @media (max-width: 767px) { .tag--gold { left: 0; top: 42%; bottom: auto; } .hero__area { font-size: 1.1rem; } }
 @media (max-width: 767px) { .tag--gold { display: none; } }
-/* White sticker glow on the logo everywhere */
-.logo__mark, .polaroid__logo { filter: drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 3px 6px rgba(15, 36, 73, 0.28)); }
+/* Glowing sticker on every logo: crisp white edge plus a soft blue halo, so it pops on light sections the way it does on the navy footer */
+:root {
+  --logo-glow: drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 7px rgba(111, 163, 255, 0.75)) drop-shadow(0 0 18px rgba(79, 134, 247, 0.45));
+  --logo-glow-off: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 7px rgba(111, 163, 255, 0)) drop-shadow(0 0 18px rgba(79, 134, 247, 0));
+}
+.logo__mark, .polaroid__logo { filter: var(--logo-glow); }
 
 /* ---------- MacBook Pro look: thin black bezel, notch, macOS menu bar + Safari ---------- */
 .laptop__lid {
@@ -2334,7 +2336,7 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
   .logo__mark--anim.is-playing .logo__layer--mdv { animation: logo-mdv 900ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both; }
   @keyframes logo-ring { from { --sweep: 0deg; } to { --sweep: 370deg; } }
   /* The white sticker glow waits until the logo has drawn, then fades in (no per-frame shadow redraws while it animates) */
-  .js .logo__mark--anim:not(.is-done) { filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 3px 6px rgba(15, 36, 73, 0)); }
+  .js .logo__mark--anim:not(.is-done) { filter: var(--logo-glow-off); }
   .js .logo__mark--anim.is-done { transition: filter 600ms ease-out; }
   @keyframes logo-mdv {
     from { opacity: 0; transform: translateX(70%); }

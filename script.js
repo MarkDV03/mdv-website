@@ -607,8 +607,13 @@ const PROJECT_STATUS = {
     });
   });
   var head = document.querySelector(".site-header .logo__mark--anim");
-  // Top bar logo plays once on load (after the first-visit loader clears)
-  if (head) setTimeout(function () { play(head); }, document.documentElement.classList.contains("show-loader") ? 1350 : 100);
+  // Top bar logo plays on load (after the first-visit loader clears)
+  if (head) {
+    setTimeout(function () { play(head); }, document.documentElement.classList.contains("show-loader") ? 1350 : 100);
+    // ...then replays every 12 seconds while the tab is open, and whenever someone hovers it
+    setInterval(function () { if (!document.hidden && !head.classList.contains("is-playing")) play(head); }, 12000);
+    head.addEventListener("mouseenter", function () { if (!head.classList.contains("is-playing")) play(head); });
+  }
   var seen = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { if (e.isIntersecting) play(e.target); });
   }, { threshold: 0.6 });
