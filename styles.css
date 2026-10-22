@@ -1845,17 +1845,20 @@ body.menu-open { overflow: hidden; }
 /* Glowing sticker on every logo: crisp white edge plus a soft blue halo, so it pops on light sections the way it does on the navy footer */
 :root {
   /* Only small blurs in the filter: iPhone Safari draws a visible box around big drop-shadow blurs, so the wide halo is a soft gradient behind the logo instead */
-  --logo-glow: drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 5px rgba(111, 163, 255, 0.7));
-  --logo-glow-off: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0)) drop-shadow(0 0 5px rgba(111, 163, 255, 0));
 }
-.logo__mark, .polaroid__logo { filter: var(--logo-glow); }
+/* --glow is a registered number, so the glow fades by animating one value: iPhone Safari jumps when it has to blend whole filter lists */
+@property --glow { syntax: "<number>"; inherits: false; initial-value: 1; }
+.logo__mark, .polaroid__logo {
+  --glow: 1;
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, var(--glow))) drop-shadow(0 0 1.5px rgba(255, 255, 255, var(--glow))) drop-shadow(0 0 5px rgba(111, 163, 255, calc(0.7 * var(--glow))));
+}
 .logo__mark--anim { isolation: isolate; }
 .logo__mark--anim::before {
   content: ""; position: absolute; inset: -18% -12%; z-index: -1; pointer-events: none; border-radius: 50%;
   background: radial-gradient(closest-side, rgba(111, 163, 255, 0.55), rgba(79, 134, 247, 0.22) 55%, rgba(79, 134, 247, 0) 100%);
-  transition: opacity 600ms ease-out;
+  transition: opacity 900ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-.js .logo__mark--anim:not(.is-done)::before { opacity: 0; }
+.js .logo__mark--anim:not(.is-done)::before { opacity: 0; transition: none; }
 
 /* ---------- MacBook Pro look: thin black bezel, notch, macOS menu bar + Safari ---------- */
 .laptop__lid {
@@ -2356,8 +2359,8 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
   .logo__mark--anim.is-playing .logo__layer--mdv { animation: logo-mdv 900ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both; }
   @keyframes logo-ring { from { --sweep: 0deg; } to { --sweep: 370deg; } }
   /* The white sticker glow waits until the logo has drawn, then fades in (no per-frame shadow redraws while it animates) */
-  .js .logo__mark--anim:not(.is-done) { filter: var(--logo-glow-off); }
-  .js .logo__mark--anim.is-done { transition: filter 600ms ease-out; }
+  .js .logo__mark--anim:not(.is-done) { --glow: 0; }
+  .js .logo__mark--anim.is-done { transition: --glow 900ms cubic-bezier(0.25, 0.1, 0.25, 1); }
   @keyframes logo-mdv {
     from { opacity: 0; transform: translateX(70%); }
     to { opacity: 1; transform: none; }
