@@ -12,9 +12,10 @@ CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://markdv03.github.io/Chri
 CHRISTINA_PREVIEW = os.environ.get('CHRISTINA_PREVIEW', 'live/christinas-salon/')
 I = 'assets/img/work/'
 
-import os
+import os, re
 def doodle(name, cls=''):
     svg = open(os.path.join(OUT, 'assets', 'doodles', name + '.svg')).read().strip()
+    svg = re.sub(r'<metadata>.*?</metadata>\s*', '', svg, flags=re.S).replace(' xmlns:c2pa="http://c2pa.org/manifest"', '')  # drop embedded file credentials, they only bloat the page
     svg = svg.replace('xmlns="http://www.w3.org/2000/svg" ', '').replace('#2F5FD0', 'currentColor')
     return svg.replace('<svg ', f'<svg class="doodle doodle--{name} {cls}" aria-hidden="true" focusable="false" ', 1)
 
@@ -318,7 +319,7 @@ def page_index(root=''):
           <ul class="benefits" role="list">
 {ben_html}
           </ul>
-          <div class="street" aria-hidden="true">{doodle('taco-truck')}{doodle('barbershop')}{doodle('coffee')}{doodle('transamerica')}{doodle('boba')}{doodle('landscaping')}{doodle('plumber-van')}</div>
+          <div class="street" aria-hidden="true">{''.join(doodle(n) for n in ['taco-truck', 'bakery', 'barbershop', 'coffee', 'auto-shop', 'transamerica', 'salon', 'florist', 'boba', 'landscaping', 'plumber-van'])}</div>
         </div>
       </section>
 

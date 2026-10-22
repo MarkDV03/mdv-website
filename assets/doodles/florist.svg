@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2F5FD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 200 190">
+<path d="M22 176 V70 H178 V176"/><path d="M14 70 H186 L176 48 H24 Z"/><path d="M40 48 L34 70 M70 48 L66 70 M100 48 V70 M130 48 L134 70 M160 48 L166 70" stroke-width="1.4"/>
+<path d="M36 176 V108 H80 V176 M70 142 v6"/><path d="M96 104 H166 V150 H96 Z"/>
+<path d="M104 176 L100 156 H136 L132 176 Z"/><path d="M110 156 V138 M118 156 V132 M126 156 V140" stroke-width="1.6"/>
+<circle cx="110" cy="134" r="5"/><circle cx="118" cy="127" r="5"/><circle cx="126" cy="136" r="5"/>
+<path d="M146 176 L143 162 H165 L162 176 Z"/><path d="M154 162 V150" stroke-width="1.6"/><circle cx="154" cy="146" r="5"/>
+<text x="100" y="40" text-anchor="middle" font-family="Caveat, cursive" font-size="22" font-weight="700" fill="#2F5FD0" stroke="none">Flowers</text>
+<path d="M4 176 H196"/>
+</svg>

@@ -1836,7 +1836,9 @@ body.menu-open { overflow: hidden; }
 @media (prefers-reduced-motion: no-preference) {
   .hero::before { animation: fog 26s ease-in-out infinite alternate; will-change: transform; }
   @keyframes fog { from { transform: translateX(-4%); } to { transform: translateX(6%); } }
-  .js .hero__bay .hb-deck, .js .hero__bay .hb-hills { stroke-dasharray: 1500; stroke-dashoffset: 1500; animation: draw-line 2.4s var(--ease-out) 900ms forwards; }
+  /* Bridge and hills draw left to right across the full width (a clip, so it reaches the far edge on any screen size) */
+  .js .hero__bay svg { clip-path: inset(0 100% 0 0); animation: bay-draw 2.4s var(--ease-out) 900ms forwards; }
+  @keyframes bay-draw { to { clip-path: inset(0 0 0 0); } }
 }
 @media (max-width: 767px) { .tag--gold { left: 0; top: 42%; bottom: auto; } .hero__area { font-size: 1.1rem; } }
 @media (max-width: 767px) { .tag--gold { display: none; } }
@@ -1982,13 +1984,20 @@ body.menu-open { overflow: hidden; }
   border-bottom: 2px solid rgba(47, 95, 208, 0.22);
   opacity: 0.4;
 }
-.street .doodle { flex: 0 1 auto; width: auto; height: clamp(54px, 7vw, 104px); }
+.street .doodle { flex: 0 1 auto; width: auto; min-width: 0; height: clamp(54px, 7vw, 104px); }
+/* On bigger screens the bridge and the street run edge to edge (clip stops a desktop scrollbar from adding a sideways scroll) */
+html { overflow-x: clip; }
+@media (min-width: 900px) {
+  .hero__bay { justify-self: start; width: 100vw; max-width: none; margin-inline: calc(50% - 50vw) 0; }
+  .street { margin-inline: calc(50% - 50vw); padding-inline: clamp(16px, 2vw, 32px); gap: clamp(10px, 1.6vw, 28px); }
+  .street .doodle { height: clamp(54px, 6vw, 100px); }
+}
 .street .doodle--boba, .street .doodle--coffee, .street .doodle--salon { height: clamp(44px, 5.4vw, 80px); }
 .street .doodle--transamerica { height: clamp(70px, 9vw, 136px); }
 @media (max-width: 767px) {
   .has-doodles > .doodle { opacity: 0.09; }
   .doodle--fog, .doodle--redwood, .doodle--sailboat, .doodle--golden-gate { display: none; }
-  .street .doodle--transamerica, .street .doodle--coffee, .street .doodle--boba { display: none; }
+  .street .doodle--transamerica, .street .doodle--coffee, .street .doodle--boba, .street .doodle--bakery, .street .doodle--florist, .street .doodle--landscaping { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .doodle--fog { animation: fog 18s ease-in-out infinite alternate; }
@@ -1997,6 +2006,8 @@ body.menu-open { overflow: hidden; }
   .js .street.is-in .doodle:nth-child(2) { transition-delay: 80ms; } .js .street.is-in .doodle:nth-child(3) { transition-delay: 160ms; }
   .js .street.is-in .doodle:nth-child(4) { transition-delay: 240ms; } .js .street.is-in .doodle:nth-child(5) { transition-delay: 320ms; }
   .js .street.is-in .doodle:nth-child(6) { transition-delay: 400ms; } .js .street.is-in .doodle:nth-child(7) { transition-delay: 480ms; }
+  .js .street.is-in .doodle:nth-child(8) { transition-delay: 560ms; } .js .street.is-in .doodle:nth-child(9) { transition-delay: 640ms; }
+  .js .street.is-in .doodle:nth-child(10) { transition-delay: 720ms; } .js .street.is-in .doodle:nth-child(11) { transition-delay: 800ms; }
 }
 
 /* ---------- Active section in the menu ---------- */

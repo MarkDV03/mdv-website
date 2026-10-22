@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2F5FD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 220 190">
+<path d="M24 176 V62 H196 V176"/><path d="M14 62 Q30 80 46 62 Q62 80 78 62 Q94 80 110 62 Q126 80 142 62 Q158 80 174 62 Q190 80 206 62 L196 40 H24 Z"/>
+<path d="M54 40 L46 62 M86 40 L78 62 M118 40 L110 62 M150 40 L142 62 M180 40 L174 62" stroke-width="1.4"/>
+<path d="M40 176 V104 H88 V176 M78 140 v6"/><path d="M104 96 H182 V150 H104 Z"/>
+<path d="M118 142 q-2 -14 12 -16 q6 -10 14 0 q14 2 12 16 Z" stroke-width="1.6"/><path d="M160 142 c0 -12 18 -12 18 0 Z" stroke-width="1.6"/>
+<text x="110" y="30" text-anchor="middle" font-family="Caveat, cursive" font-size="22" font-weight="700" fill="#2F5FD0" stroke="none">Bakery</text>
+<path d="M4 176 H216"/>
+</svg>
