@@ -167,7 +167,20 @@
         firstBad.focus();
         return;
       }
-      status.textContent = 'Preview only: this form isn’t connected yet. Please call (408) 550-4392 to book.';
+      var button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      status.textContent = 'Sending…';
+      fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error(data.message);
+          form.reset();
+          status.textContent = 'Thanks! We got your request and will call you back to confirm.';
+        })
+        .catch(function () {
+          status.textContent = 'Sorry, that didn’t go through. Please call (408) 550-4392 to book.';
+        })
+        .then(function () { button.disabled = false; });
     });
   }
 

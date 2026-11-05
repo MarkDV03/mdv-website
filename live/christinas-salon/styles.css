@@ -476,6 +476,8 @@ figure { margin: 0; }
 .field__error { color: var(--red-deep); font-size: .925rem; font-weight: 500; }
 .form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .form__status { font-weight: 500; }
+.form__note { flex-basis: 100%; color: var(--muted); font-size: .9rem; }
+.form__note a { color: inherit; text-decoration: underline; }
 
 /* Footer */
 .site-footer { background: var(--ink); color: #d9d2da; padding-top: 3.5rem; font-size: .95rem; }

@@ -25,7 +25,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap"></noscript>
-  <link rel="stylesheet" href="styles.css?v=1792632164">
+  <link rel="stylesheet" href="styles.css?v=1793838071">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
 </head>
 <body>
@@ -314,7 +314,7 @@
         <div class="about__copy" data-reveal>
           <svg class="love love--about" viewBox="0 0 1036 1034" role="img" aria-label="Love is in the Hair!"><mask id="love-m-about" maskUnits="userSpaceOnUse" x="0" y="0" width="1036" height="1034"><path class="love__pen love__pen--a" pathLength="1" d="M311 293C330 150 500 130 560 250C580 300 590 360 590 405"/><path class="love__pen love__pen--b" pathLength="1" d="M560 250C650 80 800 20 900 40C990 55 1040 130 1036 225C1030 330 980 430 898 518C820 600 700 730 639 812C590 880 570 950 587 1036"/></mask><use href="#love-text"/><use href="#love-heart" mask="url(#love-m-about)"/></svg>
           <h2 id="about-title" class="visually-hidden">About Christina's Hair Salon</h2>
-          <p>Christina's Hair Salon, also known as Hair Couture, has been giving Milpitas quality hair care for over 14 years. You'll find us inside Seafood City on Landess Avenue. We're a friendly, Filipino-operated salon with professional stylists who pay close attention to every detail of your next look.</p>
+          <p>Christina's Hair Salon has been giving Milpitas quality hair care for over 14 years. You'll find us inside Seafood City on Landess Avenue. We're a friendly, Filipino-operated salon with professional stylists who pay close attention to every detail of your next look.</p>
           <ul class="tick-list">
             <li>Quality customer service</li>
             <li>Filipino operated</li>
@@ -452,7 +452,7 @@
       </div>
     </section>
 
-    <!-- Request form (design only) -->
+    <!-- Request form: sent by Web3Forms to the salon's email -->
     <section class="section request" id="request" aria-labelledby="request-title">
       <div class="container request__inner">
         <header class="section-head" data-reveal>
@@ -460,7 +460,11 @@
           <h2 id="request-title">Request an appointment</h2>
           <p>Send us your preferred time and we'll call you back to confirm. For same-day visits, just call or walk in.</p>
         </header>
-        <form class="form" data-reveal data-request-form novalidate>
+        <form class="form" action="#" data-reveal novalidate onsubmit="return false">
+          <input type="hidden" name="subject" value="New appointment request from the website">
+          <input type="hidden" name="from_name" value="Christina's Hair Salon website">
+          <input type="hidden" name="redirect" value="https://christinashairsalonmilpitas.com/#request">
+          <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Your name <span aria-hidden="true">*</span></label>
             <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
@@ -502,6 +506,7 @@
           <div class="field--full form__foot">
             <button class="btn btn--primary" type="submit">Send request</button>
             <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+            <p class="form__note">We only use your name and number to call you back about your visit. <a href="privacy.html">Privacy policy</a></p>
           </div>
         </form>
       </div>
@@ -548,6 +553,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=1792632164" defer></script>
+  <script src="script.js?v=1793838071" defer></script>
 </body>
 </html>
