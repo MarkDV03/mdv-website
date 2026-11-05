@@ -7,7 +7,7 @@ OUT = sys.argv[1]
 # Set to True once the businesses give permission to show their case studies.
 SHOW_WORK = len(sys.argv) > 2 and sys.argv[2] == 'full'
 # Christina's real site. The Work section shows it live, so it updates whenever her site does.
-CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://markdv03.github.io/Christinas-salon/')
+CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://christinashairsalonmilpitas.com/')
 # Same-origin copy of Christina's site for the scrolling previews (the tour can only drive a page on this domain)
 CHRISTINA_PREVIEW = os.environ.get('CHRISTINA_PREVIEW', 'live/christinas-salon/')
 I = 'assets/img/work/'

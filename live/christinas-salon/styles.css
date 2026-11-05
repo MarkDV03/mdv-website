@@ -404,6 +404,9 @@ figure { margin: 0; }
 }
 
 /* Team */
+.team__group { max-width: 44rem; margin: 0 auto 2.5rem; text-align: center; }
+.team__group img { width: 100%; height: auto; border-radius: 1.25rem; box-shadow: 0 18px 40px -22px rgba(158, 12, 36, .55); }
+.team__group figcaption { margin-top: .75rem; color: var(--muted); font-size: .95rem; }
 .team__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
 .person { text-align: center; }
 .person__photo {
@@ -419,7 +422,6 @@ figure { margin: 0; }
 .person__photo--soon .love { width: 58%; aspect-ratio: 1036 / 1034; color: rgba(255, 255, 255, .9); }
 .person__name { margin-top: 1rem; font-size: 1.35rem; }
 .person__role { color: var(--red); font-weight: 600; margin-top: .2rem; }
-.person__note { color: var(--muted); font-size: .9rem; margin-top: .15rem; }
 @media (min-width: 900px) {
   .team__grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; }
 }
