@@ -283,7 +283,7 @@ def page_index(root=''):
             <a class="btn btn--dark" href="#contact">Get my free concept {icon('arrow-right')}</a>
             <a class="btn btn--light" href="#work">See my work</a>
           </div>
-          <p class="hero__offer"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> Founding offer: my first 5 clients get a reduced price. <strong class="hero__offer-left">{5 - FOUNDING_TAKEN} of 5 spots left.</strong> <a href="#founding">See how it works</a></p>
+          <p class="hero__offer"><a href="#founding"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> Founding offer: <strong>{5 - FOUNDING_TAKEN} of 5 spots left</strong> <span aria-hidden="true">&rarr;</span></a></p>
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
 

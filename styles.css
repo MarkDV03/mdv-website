@@ -2462,15 +2462,15 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .founding__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--violet); }
 .founding__dots i.is-taken { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-line); }
 
-/* Founding offer: a quiet line under the hero buttons */
-.hero__offer { margin-top: 18px; color: var(--muted); font-size: 0.98rem; line-height: 1.5; }
+/* Founding offer: a quiet one-line link under the hero buttons */
+.hero__offer { margin-top: 18px; font-size: 0.98rem; line-height: 1.4; }
+.hero__offer a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.hero__offer strong { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--violet); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.hero__offer a:hover strong { text-decoration-color: var(--ink); }
 .hero__offer-star { color: #E0A82E; margin-right: 2px; }
-.hero__offer a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--violet); text-decoration-thickness: 2px; text-underline-offset: 4px; white-space: nowrap; }
-.hero__offer a:hover { text-decoration-color: var(--ink); }
 .founding { scroll-margin-top: 110px; }
 
 /* Founding offer countdown */
-.hero__offer-left { color: var(--ink); font-weight: 700; }
 .founding__count { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(16px, 3vw, 32px); margin-top: 12px; padding-top: 20px; border-top: 1px solid var(--ink-line); }
 .founding__left { display: flex; align-items: center; gap: 12px; }
 .founding__num { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.2rem, 7vw, 4.4rem); line-height: 0.9; color: var(--violet); letter-spacing: -0.04em; }
