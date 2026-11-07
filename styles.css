@@ -2445,3 +2445,9 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
   .site-footer .site-footer__skyline { margin-inline: calc(50% - 50vw); }
   .site-footer .site-footer__skyline svg { height: clamp(200px, 15.6vw, 300px); }
 }
+
+/* Live previews: a still of the site shows first, then the live site fades in over it once it's ready */
+.live-frame { background-size: 100% auto; background-position: top center; background-repeat: no-repeat; }
+.js .live-frame iframe { opacity: 0; transition: opacity 700ms cubic-bezier(.2,.7,.2,1); }
+.js .live-frame iframe.is-ready { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .js .live-frame iframe { transition: none; } }

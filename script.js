@@ -372,6 +372,10 @@ const PROJECT_STATUS = {
    Works for same-origin sites (everything on markdv03.github.io); otherwise the top of the site just shows. */
 (function () {
   var frames = document.querySelectorAll(".live-frame iframe");
+  frames.forEach(function (f) {
+    f.addEventListener("load", function () { setTimeout(function () { f.classList.add("is-ready"); }, 400); });
+    setTimeout(function () { f.classList.add("is-ready"); }, 8000);   // never leave it hidden
+  });
   if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var easeInOut = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
   var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
@@ -530,6 +534,8 @@ const PROJECT_STATUS = {
         "[data-reveal],.reveal{opacity:1!important;transform:none!important}" +
         (phone ? ".topbar,.announce,.alert,.top-bar,.hours-bar{display:none!important}" : "");
       doc.head.appendChild(css);
+      // let the page paint with the styles above, then fade it in over the still image
+      setTimeout(function () { iframe.classList.add("is-ready"); }, 250);
       s = { doc: doc, win: win, root: doc.documentElement, y: 0, useTransform: false };
       if (cursor) placeCursor(box.clientWidth * 0.62, box.clientHeight * 0.55);
       tour(++run);
@@ -568,6 +574,7 @@ const PROJECT_STATUS = {
     timer = setTimeout(function () {
       var waiting = frames.length;
       frames.forEach(function (f) {
+        f.classList.remove("is-ready");
         f.addEventListener("load", function done() { f.removeEventListener("load", done); if (--waiting === 0) box.classList.remove("is-switching"); });
         f.src = tab.dataset.src;
       });

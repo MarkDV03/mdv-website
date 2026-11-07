@@ -189,10 +189,10 @@ def page_index(root=''):
             <div class="showcase__stage">
               <div class="live-media">
                 <div class="laptop live-laptop">
-                  <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', '<span data-url-label>' + first['url_label'] + '</span>')}<div class="live-frame" data-w="1440" data-h="900"><iframe src="{first['src']}" title="Website preview, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
+                  <div class="laptop__lid"><div class="laptop__display">{MAC_BAR.replace('URL', '<span data-url-label>' + first['url_label'] + '</span>')}<div class="live-frame" data-w="1440" data-h="900" style="background-image:url(assets/img/preview-christina-desktop.webp)"><iframe src="{first['src']}" title="Website preview, desktop view" width="1440" height="900" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div>
                   <div class="laptop__base" aria-hidden="true"></div>
                 </div>
-                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844"><iframe src="{first['src']}" title="Website preview, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
+                <div class="live-phone"><div class="phone"><span class="phone__btn phone__btn--action" aria-hidden="true"></span><span class="phone__btn phone__btn--vol" aria-hidden="true"></span><span class="phone__btn phone__btn--vol2" aria-hidden="true"></span><span class="phone__btn phone__btn--power" aria-hidden="true"></span><span class="phone__btn phone__btn--cam" aria-hidden="true"></span><div class="phone__display"><div class="live-frame" data-w="390" data-h="844" style="background-image:url(assets/img/preview-christina-phone.webp)"><iframe src="{first['src']}" title="Website preview, phone view" width="390" height="844" loading="lazy" tabindex="-1" scrolling="no"></iframe></div></div></div></div>
               </div>
               <div class="showcase__info">
 {chr(10).join(ind_panel(n, d) for n, d in enumerate(IND))}
