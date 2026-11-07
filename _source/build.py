@@ -10,6 +10,8 @@ SHOW_WORK = len(sys.argv) > 2 and sys.argv[2] == 'full'
 CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://christinashairsalonmilpitas.com/')
 # Same-origin copy of Christina's site for the scrolling previews (the tour can only drive a page on this domain)
 CHRISTINA_PREVIEW = os.environ.get('CHRISTINA_PREVIEW', 'live/christinas-salon/')
+# Founding client offer: change this number each time a founding client signs (0 to 5).
+FOUNDING_TAKEN = 0
 I = 'assets/img/work/'
 
 import os, re
@@ -281,7 +283,7 @@ def page_index(root=''):
             <a class="btn btn--dark" href="#contact">Get my free concept {icon('arrow-right')}</a>
             <a class="btn btn--light" href="#work">See my work</a>
           </div>
-          <p class="hero__offer"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> Founding offer: my first 5 clients get a reduced price. <a href="#founding">See how it works</a></p>
+          <p class="hero__offer"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> Founding offer: my first 5 clients get a reduced price. <strong class="hero__offer-left">{5 - FOUNDING_TAKEN} of 5 spots left.</strong> <a href="#founding">See how it works</a></p>
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
 
@@ -339,7 +341,10 @@ def page_index(root=''):
             <p class="founding__eyebrow">Founding client offer</p>
             <h3 class="founding__title" id="founding-title">Be one of my first 5 clients</h3>
             <p class="founding__text">My first 5 clients get a reduced price on their full website. In return, I get to show your site in my work, and you write a short review about working with me.</p>
-            <p class="founding__spots"><span class="founding__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Only 5 spots</p>
+            <div class="founding__count">
+              <p class="founding__left"><span class="founding__num">{5 - FOUNDING_TAKEN}</span><span class="founding__of">of 5 spots<br>left</span></p>
+              <ol class="founding__slots" role="list" aria-label="{5 - FOUNDING_TAKEN} of 5 founding spots left">{''.join(f'<li class="{"is-taken" if n < FOUNDING_TAKEN else "is-open"}"><span>{n + 1}</span>{"Taken" if n < FOUNDING_TAKEN else "Open"}</li>' for n in range(5))}</ol>
+            </div>
           </aside>
           <div class="chapter-cta reveal">
             <p>Curious what step two looks like for your business?</p>
