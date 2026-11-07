@@ -274,7 +274,6 @@ def page_index(root=''):
       <!-- Hero -->
       <section class="hero" data-tone="light" aria-labelledby="hero-title">
         <div class="hero__copy">
-          <a class="offer-pill" href="#founding"><span class="offer-pill__tag">Founding offer</span><span class="offer-pill__text">Reduced price for my first 5 clients</span>{icon('arrow-right')}</a>
           <p class="hand hero__hello">Hi, I&rsquo;m Mark!</p>
           <h1 class="hero__title display" id="hero-title">I make websites for <span class="swoosh">local businesses</span> in the Bay Area.</h1>
           <p class="hero__sub lead">Salons, barbershops, restaurants, caf&eacute;s, bakeries, auto shops, plumbers, landscapers and more. If your website is outdated, slow or hard to use on a phone, send me your business name. I&rsquo;ll design a new homepage for free, and you decide from there.</p>
@@ -282,6 +281,7 @@ def page_index(root=''):
             <a class="btn btn--dark" href="#contact">Get my free concept {icon('arrow-right')}</a>
             <a class="btn btn--light" href="#work">See my work</a>
           </div>
+          <p class="hero__offer"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> Founding offer: my first 5 clients get a reduced price. <a href="#founding">See how it works</a></p>
           <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
 
