@@ -274,6 +274,7 @@ def page_index(root=''):
       <!-- Hero -->
       <section class="hero" data-tone="light" aria-labelledby="hero-title">
         <div class="hero__copy">
+          <a class="offer-pill" href="#founding"><span class="offer-pill__tag">Founding offer</span><span class="offer-pill__text">Reduced price for my first 5 clients</span>{icon('arrow-right')}</a>
           <p class="hand hero__hello">Hi, I&rsquo;m Mark!</p>
           <h1 class="hero__title display" id="hero-title">I make websites for <span class="swoosh">local businesses</span> in the Bay Area.</h1>
           <p class="hero__sub lead">Salons, barbershops, restaurants, caf&eacute;s, bakeries, auto shops, plumbers, landscapers and more. If your website is outdated, slow or hard to use on a phone, send me your business name. I&rsquo;ll design a new homepage for free, and you decide from there.</p>
@@ -334,7 +335,7 @@ def page_index(root=''):
           <ol class="steps" role="list">
 {step_html}
           </ol>
-          <aside class="founding reveal" aria-labelledby="founding-title">
+          <aside class="founding reveal" id="founding" aria-labelledby="founding-title">
             <p class="founding__eyebrow">Founding client offer</p>
             <h3 class="founding__title" id="founding-title">Be one of my first 5 clients</h3>
             <p class="founding__text">My first 5 clients get a reduced price on their full website. In return, I get to show your site in my work, and you write a short review about working with me.</p>
