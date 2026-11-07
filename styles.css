@@ -2451,3 +2451,13 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .js .live-frame iframe { opacity: 0; transition: opacity 700ms cubic-bezier(.2,.7,.2,1); }
 .js .live-frame iframe.is-ready { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .js .live-frame iframe { transition: none; } }
+
+/* Founding client offer (process section) */
+.founding { position: relative; margin-top: clamp(16px, 2vw, 24px); padding: clamp(22px, 3vw, 34px); border-radius: var(--r-card); background: var(--ink-soft); border: 1.5px solid var(--violet); display: grid; gap: 10px; max-width: 46rem; }
+.founding__eyebrow { color: var(--violet); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.founding__title { font-size: clamp(1.5rem, 2.6vw, 1.9rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+.founding__text { color: var(--muted-dark); max-width: 56ch; }
+.founding__spots { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; font-weight: 600; font-size: 0.95rem; }
+.founding__dots { display: inline-flex; gap: 6px; }
+.founding__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--violet); }
+.founding__dots i.is-taken { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-line); }

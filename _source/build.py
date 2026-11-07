@@ -334,6 +334,12 @@ def page_index(root=''):
           <ol class="steps" role="list">
 {step_html}
           </ol>
+          <aside class="founding reveal" aria-labelledby="founding-title">
+            <p class="founding__eyebrow">Founding client offer</p>
+            <h3 class="founding__title" id="founding-title">Be one of my first 5 clients</h3>
+            <p class="founding__text">My first 5 clients get a reduced price on their full website. In return, I get to show your site in my work, and you write a short review about working with me.</p>
+            <p class="founding__spots"><span class="founding__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Only 5 spots</p>
+          </aside>
           <div class="chapter-cta reveal">
             <p>Curious what step two looks like for your business?</p>
             <a class="btn btn--lime" href="#contact">Get my free concept {icon('arrow-right')}</a>
@@ -375,7 +381,7 @@ def page_index(root=''):
           <div class="faq__list reveal">
             <details class="faq__item">
               <summary>How much does a website cost?<span class="faq__icon" aria-hidden="true"></span></summary>
-              <p>Every business needs something a little different, so every project gets its own quote based on the pages and features you need. The concept is always free, so you see exactly what you would be getting before you spend anything.</p>
+              <p>Every business needs something a little different, so every project gets its own quote based on the pages and features you need. The concept is always free, so you see exactly what you would be getting before you spend anything. My first 5 clients also get a reduced founding price in exchange for letting me show their site in my work.</p>
             </details>
             <details class="faq__item">
               <summary>Is the free concept really free?<span class="faq__icon" aria-hidden="true"></span></summary>
