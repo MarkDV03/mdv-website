@@ -343,7 +343,6 @@ def page_index(root=''):
             <p class="founding__text">My first 5 clients get a reduced price on their full website. In return, I get to show your site in my work, and you write a short review about working with me.</p>
             <div class="founding__count">
               <p class="founding__left"><span class="founding__num">{5 - FOUNDING_TAKEN}</span><span class="founding__of">of 5 spots<br>left</span></p>
-              <ol class="founding__slots" role="list" aria-label="{5 - FOUNDING_TAKEN} of 5 founding spots left">{''.join(f'<li class="{"is-taken" if n < FOUNDING_TAKEN else "is-open"}"><span>{n + 1}</span>{"Taken" if n < FOUNDING_TAKEN else "Open"}</li>' for n in range(5))}</ol>
             </div>
           </aside>
           <div class="chapter-cta reveal">
