@@ -284,7 +284,6 @@ def page_index(root=''):
             <a class="btn btn--light" href="#work">See my work</a>
           </div>
           <p class="hero__offer"><a href="#founding"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> First 5 clients get a discount: <strong>{5 - FOUNDING_TAKEN} spots left</strong> <span aria-hidden="true">&rarr;</span></a></p>
-          <p class="hand hero__area"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
         </div>
 
         <div class="hero__bay" aria-hidden="true">
@@ -295,6 +294,7 @@ def page_index(root=''):
             <path class="hb-water" d="M60 80 H180 M260 84 H420 M520 79 H600 M700 85 H880 M960 80 H1080"/>
           </svg>
         </div>
+        <p class="hand hero__area hero__area--below"><span>Hayward</span> &middot; <span>San Francisco</span> &middot; <span>Oakland</span> &middot; <span>San Leandro</span> &middot; <span>San Lorenzo</span> &middot; <span>Castro Valley</span> &middot; <span>Union City</span> &middot; <span>Fremont</span> &middot; <span>Newark</span> &middot; <span>Dublin</span> &middot; <span>Pleasanton</span> &middot; <span>Livermore</span> &middot; <span>Milpitas</span> &middot; <span>San Jose</span> &middot; <span>Santa Clara</span> &middot; <span>Sunnyvale</span></p>
       </section>
 
       <!-- Work -->
