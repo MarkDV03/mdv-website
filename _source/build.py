@@ -11,7 +11,7 @@ CHRISTINA_URL = os.environ.get('CHRISTINA_URL', 'https://christinashairsalonmilp
 # Same-origin copy of Christina's site for the scrolling previews (the tour can only drive a page on this domain)
 CHRISTINA_PREVIEW = os.environ.get('CHRISTINA_PREVIEW', 'live/christinas-salon/')
 # Founding client offer: change this number each time a founding client signs (0 to 5).
-FOUNDING_TAKEN = 0
+FOUNDING_TAKEN = 1
 I = 'assets/img/work/'
 
 import os, re
