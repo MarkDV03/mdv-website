@@ -144,7 +144,6 @@ def page_index(root=''):
           </li>''' for n, (t, d) in enumerate(benefits))
 
     steps = [
-        ('Free look at your current site', 'I check how your site works on a phone, how fast it loads and how easy it is to reach you.', 'Free'),
         ('I design a concept, free', 'You get a real redesign of your homepage to look at. Seeing it costs nothing and you&rsquo;re under no obligation.', 'Free'),
         ('You get a quote to own it', 'Like it? I give you a price for the full site, based on the pages and features your business needs. No surprises.', 'Quoted'),
         ('We refine it and launch', 'Tell me what to change, then I put it live, connect your domain and stay around for updates.', None),
@@ -346,7 +345,7 @@ def page_index(root=''):
             </div>
           </aside>
           <div class="chapter-cta reveal">
-            <p>Curious what step two looks like for your business?</p>
+            <p>Curious what step one looks like for your business?</p>
             <a class="btn btn--lime" href="#contact">Get my free concept {icon('arrow-right')}</a>
           </div>
         </div>

@@ -2485,3 +2485,4 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .hero__area--below { grid-column: 1 / -1; justify-self: center; text-align: center; max-width: 52rem; margin: 14px auto 0; font-size: 1.05rem; opacity: 0.85; transform: rotate(-0.6deg); transform-origin: center; }
 @media (max-width: 767px) { .hero__area--below { font-size: 0.98rem; } }
 @media (min-width: 900px) { .hero .hero__area--below { font-size: 1.2rem; margin-top: 20px; } }
+@media (min-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
