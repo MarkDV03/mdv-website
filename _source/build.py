@@ -275,7 +275,7 @@ def page_index(root=''):
       <!-- Hero -->
       <section class="hero" data-tone="light" aria-labelledby="hero-title">
         <div class="hero__copy">
-          <p class="hand hero__hello">Hi, I&rsquo;m Mark!</p>
+          <p class="hand hero__hello"><img class="hero__face" src="assets/img/mark-face.webp" width="120" height="120" alt="" fetchpriority="high">Hi, I&rsquo;m Mark!</p>
           <h1 class="hero__title display" id="hero-title">I make websites for <span class="swoosh">local businesses</span> in the Bay Area.</h1>
           <p class="hero__sub lead">Salons, barbershops, restaurants, caf&eacute;s, bakeries, auto shops, plumbers, landscapers and more. If your website is outdated, slow or hard to use on a phone, send me your business name. I&rsquo;ll design a new homepage for free, and you decide from there.</p>
           <div class="hero__ctas">

@@ -2486,3 +2486,7 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 @media (max-width: 767px) { .hero__area--below { font-size: 0.98rem; } }
 @media (min-width: 900px) { .hero .hero__area--below { font-size: 1.2rem; margin-top: 20px; } }
 @media (min-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+/* Small round photo of Mark beside "Hi, I'm Mark!" */
+.hero__hello { display: inline-flex; align-items: center; gap: 14px; }
+.hero__face { flex: none; width: clamp(56px, 6vw, 72px); height: clamp(56px, 6vw, 72px); border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--violet), 0 8px 20px rgba(15, 36, 73, 0.18); transform: rotate(2deg); }
