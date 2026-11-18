@@ -286,9 +286,8 @@ def page_index(root=''):
         </div>
 
         <div class="hero__photo collage">
-          <p class="hand collage__note" aria-hidden="true">That&rsquo;s me!<svg viewBox="0 0 60 40" focusable="false"><path d="M4 6 C 20 6, 40 14, 50 32 M50 32 l-9 -3 M50 32 l1 -9"/></svg></p>
-          <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
           <img class="collage__pic collage__pic--b" src="assets/img/mark-stole.webp" width="480" height="640" alt="Mark in his UC Davis graduation stole on a tree-lined road">
+          <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
           <img class="collage__pic collage__pic--a" src="assets/img/mark-garden.webp" width="480" height="640" alt="Mark smiling under a flowered garden arch">
         </div>
 
