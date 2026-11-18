@@ -285,7 +285,11 @@ def page_index(root=''):
           <p class="hero__offer"><a href="#founding"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> First 5 clients get a discount: <strong>{5 - FOUNDING_TAKEN} spots left</strong> <span aria-hidden="true">&rarr;</span></a></p>
         </div>
 
-        <div class="hero__photo"><img class="hero__face" src="assets/img/mark-hero.webp" width="720" height="720" alt="Mark, the web designer behind MDV Web Design" fetchpriority="high"></div>
+        <div class="hero__photo collage">
+          <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
+          <img class="collage__pic collage__pic--b" src="assets/img/mark-stole.webp" width="480" height="640" alt="Mark in his UC Davis graduation stole on a tree-lined road">
+          <img class="collage__pic collage__pic--a" src="assets/img/mark-garden.webp" width="480" height="640" alt="Mark smiling under a flowered garden arch">
+        </div>
 
         <div class="hero__bay" aria-hidden="true">
           <svg viewBox="0 0 1200 90" preserveAspectRatio="none" focusable="false">

@@ -2487,23 +2487,25 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 @media (min-width: 900px) { .hero .hero__area--below { font-size: 1.2rem; margin-top: 20px; } }
 @media (min-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 
-/* Photo of Mark: above the greeting on phones, beside the text on computers */
-.hero__photo { order: -1; }
-.hero__face { display: block; width: clamp(120px, 30vw, 168px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 0 0 3px var(--violet), 0 14px 32px rgba(15, 36, 73, 0.2); margin: 0 0 10px; transform: rotate(-2deg); }
+/* Photo collage of Mark: beside the text on computers, under the greeting on phones */
+.collage { position: relative; width: min(100%, 360px); aspect-ratio: 1.45; margin: 0 0 18px; }
+.collage__pic { position: absolute; width: 42%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border: 5px solid #fff; border-radius: 12px; box-shadow: 0 12px 28px rgba(15, 36, 73, 0.2); transition: transform .35s var(--ease-out, ease); }
+.collage__pic--a { left: 0; top: 10%; transform: rotate(-7deg); z-index: 1; }
+.collage__pic--c { right: 0; top: 10%; transform: rotate(6deg); z-index: 1; }
+.collage__pic--b { left: 29%; top: 0; width: 44%; transform: rotate(-1deg); z-index: 2; box-shadow: 0 0 0 3px var(--violet), 0 18px 36px rgba(15, 36, 73, 0.25); }
+@media (hover: hover) { .collage:hover .collage__pic--a { transform: rotate(-10deg) translateX(-8px); } .collage:hover .collage__pic--c { transform: rotate(9deg) translateX(8px); } }
+@media (max-width: 899px) { .hero__photo.collage { order: 0; justify-self: center; margin-top: 4px; } }
 @media (min-width: 900px) {
-  .hero { grid-template-columns: minmax(0, 1fr) auto; justify-items: stretch; text-align: left; column-gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-items: stretch; text-align: left; column-gap: clamp(32px, 5vw, 80px); align-items: center; }
   .hero__copy { max-width: 44rem; justify-self: start; }
   .hero__sub { margin-inline: 0; }
   .hero__ctas { justify-content: flex-start; }
   .hero__hello { transform-origin: left; }
-  .hero__photo { order: 0; align-self: center; }
-  .hero__face { width: clamp(260px, 26vw, 360px); margin: 0; border-width: 8px; box-shadow: 0 0 0 4px var(--violet), 0 24px 50px rgba(15, 36, 73, 0.22); transform: rotate(3deg); }
+  .hero__photo.collage { width: clamp(340px, 34vw, 500px); aspect-ratio: 0.92; margin: 0; }
+  .collage__pic { width: 46%; border-width: 7px; border-radius: 14px; }
+  .collage__pic--a { left: 0; top: 0; }
+  .collage__pic--c { right: 0; bottom: 0; top: auto; left: auto; }
+  .collage__pic--b { left: 25%; top: 17%; width: 50%; }
 }
-
+@media (prefers-reduced-motion: reduce) { .collage__pic { transition: none; } }
 @media (max-width: 899px) { .hero { display: grid; grid-template-columns: minmax(0, 1fr); } }
-/* Phones: photo sits to the right of "Hi, I'm Mark!" instead of on its own row */
-@media (max-width: 899px) {
-  .hero__photo { position: absolute; top: clamp(40px, 7vw, 88px); right: var(--gutter); order: 0; }
-  .hero__face { width: clamp(118px, 34vw, 160px); margin: 0; transform: rotate(3deg); }
-  .hero__hello { display: flex; align-items: center; min-height: clamp(118px, 34vw, 160px); margin-bottom: 14px; padding-right: clamp(130px, 37vw, 175px); }
-}
