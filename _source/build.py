@@ -286,6 +286,7 @@ def page_index(root=''):
         </div>
 
         <div class="hero__photo collage">
+          <p class="hand collage__note" aria-hidden="true">That&rsquo;s me!<svg viewBox="0 0 60 40" focusable="false"><path d="M4 6 C 20 6, 40 14, 50 32 M50 32 l-9 -3 M50 32 l1 -9"/></svg></p>
           <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
           <img class="collage__pic collage__pic--b" src="assets/img/mark-stole.webp" width="480" height="640" alt="Mark in his UC Davis graduation stole on a tree-lined road">
           <img class="collage__pic collage__pic--a" src="assets/img/mark-garden.webp" width="480" height="640" alt="Mark smiling under a flowered garden arch">
@@ -336,7 +337,7 @@ def page_index(root=''):
         <div class="container">
           <div class="section-head section-head--split reveal">
             <div>
-              <h2 class="h2" id="process-title">The concept is free. Owning it is quoted.</h2>
+              <h2 class="h2" id="process-title">How we&rsquo;d work together</h2>
             </div>
           </div>
           <ol class="steps" role="list">
@@ -373,6 +374,7 @@ def page_index(root=''):
             <h2 class="h2" id="about-title">A bit about me</h2>
             <p class="lead">I was born and raised in Hayward. All my life I&rsquo;ve walked into great local businesses that either don&rsquo;t have a website or have one that doesn&rsquo;t do them justice. I started MDV Web Design to change that and help more people find them.</p>
             <p class="lead">I&rsquo;m also a pre-med student, and designing websites is what I love to do in my free time. Nothing makes me happier than helping a local business grow and blossom.</p>
+            <p class="hand about__sign">&ndash; Mark</p>
             <ul class="facts" role="list">
               <li>{icon('pin')} Based in Hayward</li>
               <li>{icon('store')} Trades, salons, restaurants, shops</li>
@@ -430,7 +432,7 @@ def page_index(root=''):
         <div class="container contact">
           <div class="contact__intro reveal">
             <h2 class="contact__title" id="contact-title">Tell me about your business.</h2>
-            <p class="lead">Send me your business name and what you&rsquo;d like your website to do. I&rsquo;ll take a look and get back to you.</p>
+            <p class="lead">Send me your business name and what you&rsquo;d like your website to do. Every message comes straight to me, and I&rsquo;ll get back to you personally.</p>
             <div class="contact__details">
               <a class="contact__email" href="mailto:markdv.webdesign@gmail.com">{icon('mail')} markdv.webdesign@gmail.com</a>
               <p class="contact__place">{icon('pin')} Hayward, CA &middot; Serving the whole Bay Area</p>

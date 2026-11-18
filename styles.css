@@ -2509,3 +2509,9 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 }
 @media (prefers-reduced-motion: reduce) { .collage__pic { transition: none; } }
 @media (max-width: 899px) { .hero { display: grid; grid-template-columns: minmax(0, 1fr); } }
+
+/* Homey touches: handwritten sign-off and a "That's me!" note on the collage */
+.about__sign { font-size: clamp(1.8rem, 3vw, 2.3rem); color: var(--ink); margin: 2px 0 18px; transform: rotate(-3deg); transform-origin: left; }
+.collage__note { position: absolute; z-index: 3; left: -6px; bottom: -6%; margin: 0; display: flex; align-items: flex-start; gap: 4px; font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--ink); transform: rotate(-6deg); }
+.collage__note svg { width: 46px; height: 32px; margin-top: -18px; transform: scaleY(-1); fill: none; stroke: #E0A82E; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+@media (min-width: 900px) { .collage__note { left: -2%; bottom: 4%; } }
