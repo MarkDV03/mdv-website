@@ -2487,6 +2487,23 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 @media (min-width: 900px) { .hero .hero__area--below { font-size: 1.2rem; margin-top: 20px; } }
 @media (min-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 
-/* Round photo of Mark above "Hi, I'm Mark!" */
-.hero__face { display: block; width: clamp(120px, 13vw, 168px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 0 0 3px var(--violet), 0 14px 32px rgba(15, 36, 73, 0.2); margin: 0 0 6px; transform: rotate(-2deg); }
-@media (min-width: 1100px) { .hero__face { margin-inline: auto; } }
+/* Photo of Mark: above the greeting on phones, beside the text on computers */
+.hero__photo { order: -1; }
+.hero__face { display: block; width: clamp(120px, 30vw, 168px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 0 0 3px var(--violet), 0 14px 32px rgba(15, 36, 73, 0.2); margin: 0 0 10px; transform: rotate(-2deg); }
+@media (min-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr) auto; justify-items: stretch; text-align: left; column-gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .hero__copy { max-width: 44rem; justify-self: start; }
+  .hero__sub { margin-inline: 0; }
+  .hero__ctas { justify-content: flex-start; }
+  .hero__hello { transform-origin: left; }
+  .hero__photo { order: 0; align-self: center; }
+  .hero__face { width: clamp(260px, 26vw, 360px); margin: 0; border-width: 8px; box-shadow: 0 0 0 4px var(--violet), 0 24px 50px rgba(15, 36, 73, 0.22); transform: rotate(3deg); }
+}
+
+@media (max-width: 899px) { .hero { display: grid; grid-template-columns: minmax(0, 1fr); } }
+/* Phones: photo sits to the right of "Hi, I'm Mark!" instead of on its own row */
+@media (max-width: 899px) {
+  .hero__photo { position: absolute; top: clamp(40px, 7vw, 88px); right: var(--gutter); order: 0; }
+  .hero__face { width: clamp(118px, 34vw, 160px); margin: 0; transform: rotate(3deg); }
+  .hero__hello { display: flex; align-items: center; min-height: clamp(118px, 34vw, 160px); margin-bottom: 14px; padding-right: clamp(130px, 37vw, 175px); }
+}
