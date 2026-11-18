@@ -285,7 +285,7 @@ def page_index(root=''):
           <p class="hero__offer"><a href="#founding"><span class="hero__offer-star" aria-hidden="true">&#10022;</span> First 5 clients get a discount: <strong>{5 - FOUNDING_TAKEN} spots left</strong> <span aria-hidden="true">&rarr;</span></a></p>
         </div>
 
-        <div class="hero__photo"><img class="hero__face" src="assets/img/mark-hero.webp" width="360" height="360" alt="Mark, the web designer behind MDV Web Design" fetchpriority="high"></div>
+        <div class="hero__photo"><img class="hero__face" src="assets/img/mark-hero.webp" width="720" height="720" alt="Mark, the web designer behind MDV Web Design" fetchpriority="high"></div>
 
         <div class="hero__bay" aria-hidden="true">
           <svg viewBox="0 0 1200 90" preserveAspectRatio="none" focusable="false">
