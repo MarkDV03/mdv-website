@@ -2509,4 +2509,10 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 
 /* Homey touch: handwritten sign-off */
 .about__sign { font-size: clamp(1.8rem, 3vw, 2.3rem); color: var(--ink); margin: 2px 0 18px; transform: rotate(-3deg); transform-origin: left; }
-@media (min-width: 900px) { 
+/* About photo: an arched frame with a gold outline behind it (the hero uses polaroids) */
+.polaroid { padding: 0; background: transparent; box-shadow: none; border-radius: 0; transform: none; width: min(100%, 330px); }
+.js .polaroid.reveal, .js .polaroid.reveal.is-visible { transform: none; }
+.polaroid__tape { display: none; }
+.polaroid__window { border-radius: 999px 999px 22px 22px; border: 6px solid #fff; box-shadow: 0 22px 44px -20px rgba(15, 36, 73, 0.45); background: #F4EEDF; }
+.polaroid::before { content: ""; position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 4 / 5; border: 2.5px solid var(--violet); border-radius: 999px 999px 22px 22px; transform: translate(16px, 16px); z-index: -1; }
+.polaroid figcaption { padding: 26px 4px 0; }
