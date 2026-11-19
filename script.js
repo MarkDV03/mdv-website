@@ -373,8 +373,13 @@ const PROJECT_STATUS = {
 (function () {
   var frames = document.querySelectorAll(".live-frame iframe");
   frames.forEach(function (f) {
-    f.addEventListener("load", function () { setTimeout(function () { f.classList.add("is-ready"); }, 400); });
-    setTimeout(function () { f.classList.add("is-ready"); }, 8000);   // never leave it hidden
+    // Show the live site only once the real page has loaded (not the blank placeholder a
+    // lazy iframe reports first), so the still image stays up instead of a white box.
+    f.addEventListener("load", function () {
+      var real = true;
+      try { var d = f.contentDocument; real = !!d && d.URL !== "about:blank" && d.readyState === "complete" && !!d.body && d.body.children.length > 0; } catch (e) { real = true; }
+      if (real) setTimeout(function () { f.classList.add("is-ready"); }, 400);
+    });
   });
   if (!frames.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var easeInOut = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
@@ -535,7 +540,7 @@ const PROJECT_STATUS = {
         (phone ? ".topbar,.announce,.alert,.top-bar,.hours-bar{display:none!important}" : "");
       doc.head.appendChild(css);
       // let the page paint with the styles above, then fade it in over the still image
-      setTimeout(function () { iframe.classList.add("is-ready"); }, 250);
+      if (doc.readyState === "complete") setTimeout(function () { iframe.classList.add("is-ready"); }, 250);
       s = { doc: doc, win: win, root: doc.documentElement, y: 0, useTransform: false };
       if (cursor) placeCursor(box.clientWidth * 0.62, box.clientHeight * 0.55);
       tour(++run);

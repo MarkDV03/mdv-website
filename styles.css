@@ -2540,3 +2540,7 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .lightbox__next { right: 12px; top: 50%; transform: translateY(-50%); }
 @media (max-width: 599px) { .lightbox__img { max-height: 74dvh; margin-bottom: 56px; } .lightbox__prev, .lightbox__next { top: auto; bottom: max(20px, env(safe-area-inset-bottom)); transform: none; } .lightbox__prev { left: calc(50% - 60px); } .lightbox__next { right: calc(50% - 60px); } }
 @media (prefers-reduced-motion: reduce) { .lightbox__img { animation: none; } }
+
+/* Live previews: no white box behind the iframe; the still image shows until the site is ready */
+.live-frame iframe { background: transparent; }
+.live-phone .phone__display { background: #F6F1EA; }
