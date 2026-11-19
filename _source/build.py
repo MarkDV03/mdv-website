@@ -286,9 +286,9 @@ def page_index(root=''):
         </div>
 
         <div class="hero__photo collage">
-          <img class="collage__pic collage__pic--b" src="assets/img/mark-stole.webp" width="480" height="640" alt="Mark in his UC Davis graduation stole on a tree-lined road">
-          <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
-          <img class="collage__pic collage__pic--a" src="assets/img/mark-garden.webp" width="480" height="640" alt="Mark smiling under a flowered garden arch">
+          <img class="collage__pic collage__pic--b" src="assets/img/mark-stole.webp" data-full="assets/img/mark-stole-full.webp" tabindex="0" role="button" width="480" height="640" alt="Mark in his UC Davis graduation stole on a tree-lined road">
+          <img class="collage__pic collage__pic--c" src="assets/img/mark-wellman.webp" data-full="assets/img/mark-wellman-full.webp" tabindex="0" role="button" width="480" height="640" alt="Mark reading on a bench outside Wellman Hall at UC Davis" fetchpriority="high">
+          <img class="collage__pic collage__pic--a" src="assets/img/mark-garden.webp" data-full="assets/img/mark-garden-full.webp" tabindex="0" role="button" width="480" height="640" alt="Mark smiling under a flowered garden arch">
         </div>
 
         <div class="hero__bay" aria-hidden="true">
@@ -500,6 +500,12 @@ def page_index(root=''):
           </div>
         </div>
       </section>
+    <dialog class="lightbox" aria-label="Photo viewer">
+      <img class="lightbox__img" src="" alt="">
+      <button class="lightbox__btn lightbox__close" type="button" aria-label="Close">&times;</button>
+      <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">&lsaquo;</button>
+      <button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&rsaquo;</button>
+    </dialog>
     </main>
 
 {footer(r)}
