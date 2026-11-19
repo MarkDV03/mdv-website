@@ -2487,22 +2487,22 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 @media (min-width: 900px) { .hero .hero__area--below { font-size: 1.2rem; margin-top: 20px; } }
 @media (min-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 
-/* Photo collage of Mark: one tall photo with two smaller ones beside it, in a tidy grid */
-.collage { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; width: min(100%, 380px); aspect-ratio: 1.1; margin: 4px 0 18px; }
-.collage__pic { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 16px; box-shadow: 0 10px 24px rgba(15, 36, 73, 0.16); transition: transform .35s var(--ease-out, ease); }
-.collage__pic--b { grid-row: 1 / 3; object-position: 50% 40%; }
-.collage__pic--c { object-position: 50% 35%; }
-.collage__pic--a { object-position: 45% 45%; }
-@media (hover: hover) { .collage__pic:hover { transform: translateY(-3px); } }
-@media (max-width: 899px) { .hero__photo.collage { order: 0; justify-self: start; } }
+/* Photo collage of Mark: three tilted polaroid snapshots */
+.collage { position: relative; width: min(100%, 380px); aspect-ratio: 1.3; margin: 8px 0 22px; }
+.collage__pic { position: absolute; width: 46%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; background: #fff; border: 7px solid #fff; border-bottom-width: 26px; border-radius: 4px; box-shadow: 0 12px 26px rgba(15, 36, 73, 0.2); transition: transform .35s var(--ease-out, ease); }
+.collage__pic--a { left: 0; top: 6%; transform: rotate(-5deg); object-position: 40% 40%; }
+.collage__pic--b { left: 27%; top: 0; z-index: 2; transform: rotate(2deg); object-position: 50% 40%; }
+.collage__pic--c { right: 0; top: 12%; z-index: 1; transform: rotate(6deg); object-position: 55% 40%; }
+@media (hover: hover) { .collage:hover .collage__pic--a { transform: rotate(-7deg) translateX(-6px); } .collage:hover .collage__pic--c { transform: rotate(8deg) translateX(6px); } }
+@media (max-width: 899px) { .hero__photo.collage { order: 0; justify-self: center; } }
 @media (min-width: 900px) {
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-items: stretch; text-align: left; column-gap: clamp(32px, 5vw, 80px); align-items: center; }
   .hero__copy { max-width: 44rem; justify-self: start; }
   .hero__sub { margin-inline: 0; }
   .hero__ctas { justify-content: flex-start; }
   .hero__hello { transform-origin: left; }
-  .hero__photo.collage { width: clamp(340px, 34vw, 480px); aspect-ratio: 0.95; margin: 0; gap: 12px; }
-  .collage__pic { border-radius: 20px; }
+  .hero__photo.collage { width: clamp(360px, 36vw, 520px); aspect-ratio: 1.25; margin: 0; }
+  .collage__pic { border-width: 9px; border-bottom-width: 34px; }
 }
 @media (prefers-reduced-motion: reduce) { .collage__pic { transition: none; } }
 @media (max-width: 899px) { .hero { display: grid; grid-template-columns: minmax(0, 1fr); } }
