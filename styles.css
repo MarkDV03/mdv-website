@@ -2544,3 +2544,14 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 /* Live previews: no white box behind the iframe; the still image shows until the site is ready */
 .live-frame iframe { background: transparent; }
 .live-phone .phone__display { background: #F6F1EA; }
+
+/* Logo under the hero photos */
+.hero__side { display: flex; flex-direction: column; align-items: center; }
+.hero__side .hero__logo { order: 9; }
+.hero__logo { width: clamp(150px, 42vw, 210px); margin: 0 auto 6px; }
+@media (min-width: 900px) { .hero__logo { width: clamp(180px, 16vw, 240px); margin-top: 18px; } }
+@media (max-width: 899px) {
+  .hero__side { order: 1; margin: 16px 0 18px; }
+  .hero__side .hero__photo.collage { margin: 0 0 4px; }
+  .hero__side .hero__logo { margin-top: -14px; }
+}
