@@ -2516,3 +2516,12 @@ h1, h2 { text-shadow: 0.045em 0.045em 0 var(--extrude); }
 .polaroid__window { border-radius: 999px 999px 22px 22px; border: 6px solid #fff; box-shadow: 0 22px 44px -20px rgba(15, 36, 73, 0.45); background: #F4EEDF; }
 .polaroid::before { content: ""; position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 4 / 5; border: 2.5px solid var(--violet); border-radius: 999px 999px 22px 22px; transform: translate(16px, 16px); z-index: -1; }
 .polaroid figcaption { padding: 26px 4px 0; }
+
+/* Phones: photos sit between the intro text and the buttons */
+@media (max-width: 899px) {
+  .hero__copy { display: contents; }
+  .hero__photo.collage { order: 1; margin: 16px 0 18px; }
+  .hero__ctas { margin-top: 0; }
+  .hero__ctas, .hero__offer { order: 2; }
+  .hero__bay, .hero__area--below { order: 3; }
+}
